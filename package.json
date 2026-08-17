@@ -1,21 +1,26 @@
 {
-  "name": "github-repository-template",
+  "name": "houblons-nous-website",
   "version": "1.0.0",
-  "description": "",
+  "description": "Houblons Nous — static site built with Jekyll and jekyll-notion-cms",
   "type": "module",
   "main": "index.js",
   "author": "Maxime Lenne",
   "license": "MIT",
   "private": true,
+  "keywords": [
+    "jekyll",
+    "notion",
+    "github-pages"
+  ],
   "engines": {
     "node": ">=22.11.0"
   },
-  "packageManager": "bun@1.1.45",
+  "packageManager": "bun@1.3.8",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "bun run lint:md && bun run lint:yaml && bun run lint:commit",
-    "lint:md": "markdownlint '**/*.md' --ignore node_modules --ignore dist",
-    "lint:md:fix": "markdownlint '**/*.md' --ignore node_modules --ignore dist --fix",
+    "lint:md": "markdownlint '**/*.md' --ignore node_modules --ignore _site --ignore vendor",
+    "lint:md:fix": "markdownlint '**/*.md' --ignore node_modules --ignore _site --ignore vendor --fix",
     "lint:yaml": "yamllint .",
     "lint:commit": "commitlint --last -V",
     "prepare": "husky",

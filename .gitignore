@@ -1,3 +1,20 @@
+# Jekyll
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# Bundler
+vendor/
+.bundle/
+
+# jekyll-compress-images cache
+_compress_images_cache.yml
+
+# Notion CMS generated data files (regenerated on build, not committed)
+_data/notion_*.yml
+_data/notion_*.yaml
+
 # Dependencies
 node_modules/
 package-lock.json
@@ -50,14 +67,6 @@ lerna-debug.log*
 coverage/
 .nyc_output/
 
-# Slidev
-.slidev/
-
 # Cache
 .cache/
 .parcel-cache/
-
-# Generated configuration files
-vite.proxy.config.js
-vite.proxy.config.json
-index/public/deck-ports.json
