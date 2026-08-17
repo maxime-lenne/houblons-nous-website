@@ -1,0 +1,47 @@
+{
+  "name": "github-repository-template",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "author": "Maxime Lenne",
+  "license": "MIT",
+  "private": true,
+  "engines": {
+    "node": ">=22.11.0"
+  },
+  "packageManager": "bun@1.1.45",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "bun run lint:md && bun run lint:yaml",
+    "lint:md": "markdownlint '**/*.md' --ignore node_modules --ignore dist",
+    "lint:md:fix": "markdownlint '**/*.md' --ignore node_modules --ignore dist --fix",
+    "lint:yaml": "yamllint .",
+    "lint:commit": "commitlint --last -V",
+    "prepare": "husky",
+    "commit": "gitmoji -c",
+    "changelog": "conventional-changelog -p gitmoji-config -i CHANGELOG.md -s",
+    "changelog:init": "conventional-changelog -p gitmoji-config -i CHANGELOG.md -s -r 0",
+    "release": "semantic-release",
+    "release:dry": "semantic-release --dry-run"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^20.4.1",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/commit-analyzer": "^13.0.1",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/release-notes-generator": "^14.1.0",
+    "conventional-changelog-cli": "^5.0.0",
+    "conventional-changelog-conventionalcommits": "^9.1.0",
+    "conventional-changelog-gitmoji-config": "^1.5.2",
+    "gitmoji-cli": "^9.7.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
+    "markdownlint-cli": "^0.47.0",
+    "semantic-release": "^25.0.3"
+  },
+  "lint-staged": {
+    "*.md": "markdownlint --fix",
+    "*.{yml,yaml}": "yamllint"
+  }
+}
