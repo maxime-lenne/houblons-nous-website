@@ -22,6 +22,10 @@ Complete guide for AI assistants working on this repository.
 
 | Category | Technology |
 |----------|------------|
+| Site Generator | Jekyll 4.3 (Ruby 3.3.5) |
+| CMS | jekyll-notion-cms (disabled by default, see `_config.yml` `notion:`) |
+| Theme | None — this site is not built on jekyll-deep-stack; layouts live in `_layouts/`/`_includes` here |
+| Hosting | GitHub Pages, deployed via `.github/workflows/jekyll.yml` on push to `main` |
 | Package Manager | Bun |
 | Node Version | >= 22.11.0 |
 | Git Hooks | Husky + lint-staged |
@@ -34,7 +38,13 @@ Complete guide for AI assistants working on this repository.
 ### Available Commands
 
 ```bash
-bun install           # Install dependencies
+make install           # Install Ruby + Node.js dependencies (asdf, bundler, bun)
+make serve              # Start the Jekyll dev server on http://localhost:4001
+make build              # Build the site in development mode
+make production         # Build the site for production (minified)
+make clean              # Remove _site, .jekyll-cache, .sass-cache
+
+bun install           # Install JS tooling only
 bun run lint          # Lint markdown and yaml
 bun run lint:md       # Lint markdown only
 bun run lint:md:fix   # Auto-fix markdown
@@ -42,6 +52,15 @@ bun run lint:yaml     # Lint yaml files
 bun run lint:commit   # Validate last commit message
 bun run commit        # Interactive gitmoji commit
 ```
+
+### Notion CMS
+
+`notion.enabled` is `false` in `_config.yml` until Notion databases exist. To enable:
+
+1. Create the Notion databases matching the `notion.collections` schema in `_config.yml`.
+2. Copy `env.sample` to `.env` and fill in `NOTION_TOKEN` / `NOTION_POSTS_DB` (or export them
+   as GitHub Actions secrets for CI).
+3. Set `notion.enabled: true` in `_config.yml`.
 
 ---
 
@@ -193,4 +212,4 @@ Full gitmoji list: [gitmoji.dev](https://gitmoji.dev)
 
 ---
 
-*Last updated: 2026-02-03*
+*Last updated: 2026-08-18*

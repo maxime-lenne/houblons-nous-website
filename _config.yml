@@ -1,0 +1,110 @@
+# Site settings
+title: "Houblons Nous"
+email: "hello@maxime-lenne.fr"
+description: "Blog autour de la bière et du houblon"
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://houblons-nous.org" # the base hostname & protocol for your site
+
+# Author information
+author:
+  name: "Houblons Nous"
+  email: "hello@maxime-lenne.fr"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: /:categories/:title/
+
+# Plugins configuration
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-paginate
+  - jekyll-compress-images
+  - jekyll-minifier
+
+# Pagination
+paginate: 10
+paginate_path: "/page:num/"
+
+# SEO configuration
+seo:
+  title: "Houblons Nous"
+  description: "Blog autour de la bière et du houblon"
+  type: "website"
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
+
+# =====================================================
+# NOTION CMS CONFIGURATION
+# =====================================================
+# Jekyll Notion CMS Plugin — disabled by default until the Notion
+# databases below exist and NOTION_TOKEN / NOTION_POSTS_DB are set.
+# Enable by flipping `notion.enabled` to true once configured.
+notion:
+  enabled: false
+
+  collections:
+    posts:
+      database_env: NOTION_POSTS_DB
+      data_file: notion_posts.yml
+      organizer: simple_list
+      sort_by: published_at
+      sort_order: desc
+      properties:
+        - { name: Title, type: title }
+        - { name: Slug, type: rich_text }
+        - { name: Published At, type: date, key: published_at }
+        - { name: Status, type: select } # draft, published, archived
+        - { name: Excerpt, type: rich_text }
+        - { name: Content, type: rich_text }
+        - { name: Featured Image, type: url, key: featured_image }
+        - { name: Categories, type: multi_select }
+        - { name: Tags, type: multi_select }
+        - { name: Author, type: rich_text }
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - package.json
+  - bun.lock
+  - node_modules
+  - vendor/
+  - .jekyll-cache/
+  - .sass-cache/
+  - _site/
+  - .env
+  - .env.local
+  - .env.example
+  - env.sample
+  - docs/
+  - Makefile
+  - CLAUDE.md
+  - README.md
+  - CONTRIBUTING.md
+  - CHANGELOG.md
+  - LICENSE
+  - renovate.json
+  - commitlint.config.js
+  - .releaserc.json
+  - .gitmoji.json
+  - .markdownlint.json
+  - .yamllint.yml
+  - .editorconfig
+  - .tool-versions
+  - .github/
+  - .husky/
+  - .idea/

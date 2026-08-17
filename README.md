@@ -1,84 +1,71 @@
-# GitHub Repository Template
+# Houblons Nous
 
 <!-- markdownlint-disable -->
 <p align="center">
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" width="80" height="80" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jekyll/jekyll-plain.svg" alt="Jekyll" width="80" height="80" />
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/githubactions/githubactions-original-wordmark.svg" alt="Github Action" width="80" height="80" />
 </p>
 
 <p align="center">
-  <strong>GitHub repository template with preconfigured code quality and release automation</strong>
+  <strong>Blog autour de la bière et du houblon, construit avec Jekyll</strong>
 </p>
 
 <p align="center">
-<a href="https://github.com/maxime-lenne/github-repository-template/actions?query=workflow%3ALint+branch%3Amaster">
-		<img src="https://img.shields.io/github/actions/workflow/status/maxime-lenne/github-repository-template/lint.yml?branch=master"
+<a href="https://github.com/maxime-lenne/houblons-nous-website/actions?query=workflow%3ALint">
+		<img src="https://img.shields.io/github/actions/workflow/status/maxime-lenne/houblons-nous-website/lint.yml?branch=develop"
 			 alt="Build Status">
 	</a>
-  <a href="https://github.com/maxime-lenne/github-repository-template/actions?query=workflow%3ARelease+branch%3Amaster">
-		<img src="https://img.shields.io/github/actions/workflow/status/maxime-lenne/github-repository-template/release.yml?branch=master"
-			 alt="Build Status">
+  <a href="https://github.com/maxime-lenne/houblons-nous-website/actions?query=workflow%3A%22Deploy+Jekyll+site+to+Pages%22">
+		<img src="https://img.shields.io/github/actions/workflow/status/maxime-lenne/houblons-nous-website/jekyll.yml?branch=main&label=deploy"
+			 alt="Deploy Status">
 	</a>
   <a href="https://opensource.org/licenses/MIT">
     <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT" />
   </a>
-  <a href="https://bun.sh">
-    <img src="https://img.shields.io/badge/Package%20Manager-Bun-black" alt="Bun" />
+  <a href="https://jekyllrb.com">
+    <img src="https://img.shields.io/badge/Jekyll-4.3-red" alt="Jekyll" />
   </a>
   <a href="https://gitmoji.dev">
     <img src="https://img.shields.io/badge/gitmoji-%20😜%20😍-FFDD67.svg" alt="Gitmoji" />
   </a>
-  <a href="https://semantic-release.gitbook.io/">
-    <img src="https://img.shields.io/badge/semantic--release-gitmoji-e10079?logo=semantic-release" alt="semantic-release: gitmoji" />
-</a>
 </p>
 <!-- markdownlint-restore -->
 
 ---
 
-A ready-to-use GitHub repository template with linting, git hooks, automated changelog, and semantic versioning.
+Static site for **Houblons Nous**, built with [Jekyll](https://jekyllrb.com) and deployed to
+GitHub Pages. Content can be authored as local Markdown (`_posts/`) or synced from Notion via
+[jekyll-notion-cms](https://rubygems.org/gems/jekyll-notion-cms) once configured — see
+[`docs/AGENTS.md`](docs/AGENTS.md#notion-cms).
 
-## Features
+This site does not use the [jekyll-deep-stack](https://github.com/maxime-lenne/jekyll-deep-stack)
+theme; layouts, includes, and styles live directly in this repo (`_layouts/`, `_includes/`, `_sass/`).
 
-### Code Quality
+## Stack
 
-- **Bun** - Fast and modern package manager
-- **Husky** - Automated Git hooks
-- **lint-staged** - Incremental linting on staged files
-- **Markdownlint** - Markdown file validation
-- **Yamllint** - YAML file validation
-- **EditorConfig** - Consistent coding styles across editors
+- **Jekyll 4.3** (Ruby 3.3.5) — static site generator
+- **jekyll-notion-cms** — optional Notion-backed content (disabled by default)
+- **Bun** — JS tooling (linting, git hooks, releases)
+- **Husky + lint-staged** — pre-commit checks
+- **Gitmoji + commitlint** — commit convention
+- **GitHub Actions** — lint on PR, deploy to GitHub Pages on push to `main`
 
-### Commit & Release
-
-- **Gitmoji** - Commits with emojis (`✨ Add feature`)
-- **Commitlint** - Validates commit messages (gitmoji or conventional)
-- **Changelog** - Auto-generated from commits
-- **Semantic Release** - Automated versioning and GitHub releases
-
-### Dependency Management
-
-- **Renovate** - Automatic dependency updates
-- **Dependabot** - Security alerts and updates
-
-## Installation
+## Getting started
 
 ```bash
-# Clone the template
-git clone https://github.com/maxime-lenne/github-repository-template.git my-project
-cd my-project
-
-# Install dependencies
-bun install
+make install   # Ruby + Node.js dependencies (asdf, bundler, bun)
+make serve     # Dev server at http://localhost:4001
 ```
+
+Other useful targets: `make build`, `make production`, `make clean` — see `make help` for the
+full list.
 
 ## Usage
 
 ### Commits
 
 ```bash
-# Interactive gitmoji commit
-bun run commit
+bun run commit  # Interactive gitmoji commit
 ```
 
 Accepted formats:
@@ -89,17 +76,10 @@ Accepted formats:
 ### Linting
 
 ```bash
-bun run lint          # Lint all files
+bun run lint          # Lint all files (markdown, yaml, last commit)
 bun run lint:md       # Lint Markdown only
 bun run lint:md:fix   # Auto-fix Markdown
 bun run lint:yaml     # Lint YAML files
-```
-
-### Changelog
-
-```bash
-bun run changelog       # Update changelog with new commits
-bun run changelog:init  # Generate full changelog from scratch
 ```
 
 ### Release
@@ -118,21 +98,11 @@ Hooks are automatically configured via Husky:
 - **pre-commit**: Runs lint-staged on modified files
 - **commit-msg**: Validates commit message format
 
-## Version Bumping
-
-Versions are determined automatically by commit emojis:
-
-| Emoji | Version Bump | Example |
-|-------|--------------|---------|
-| 💥 | Major | Breaking changes |
-| ✨ 🎉 | Minor | New features |
-| 🐛 🚑️ ⚡️ 🔒️ | Patch | Fixes, performance, security |
-
 ## Documentation
 
 | File | Description |
 |------|-------------|
-| [`docs/AGENTS.md`](docs/AGENTS.md) | AI assistant guide and conventions |
+| [`docs/AGENTS.md`](docs/AGENTS.md) | AI assistant guide, tech stack, and Notion CMS setup |
 | [`docs/CONVENTIONS.md`](docs/CONVENTIONS.md) | Code style and git conventions |
 | [`docs/TECHNICAL_GUIDE.md`](docs/TECHNICAL_GUIDE.md) | Technical implementation details |
 | [`docs/PROJECT_STRUCTURE.md`](docs/PROJECT_STRUCTURE.md) | Directory and file organization |
@@ -143,6 +113,11 @@ Versions are determined automatically by commit emojis:
 
 | File | Purpose |
 |------|---------|
+| `_config.yml` | Jekyll site settings, plugins, Notion CMS collections |
+| `_config.dev.yml` / `_config_prod.yml` | Environment overrides (`--config _config.yml,_config.dev.yml`) |
+| `Gemfile` | Ruby dependencies (Jekyll + plugins) |
+| `Makefile` | Build/serve/deploy commands |
+| `env.sample` | Template for `.env` (Notion CMS credentials) |
 | `.gitmoji.json` | Gitmoji-cli settings |
 | `.releaserc.json` | Semantic-release config |
 | `.markdownlint.json` | Markdown linting rules |
@@ -150,20 +125,12 @@ Versions are determined automatically by commit emojis:
 | `.editorconfig` | Editor settings |
 | `commitlint.config.js` | Commit message validation |
 
-## Customization
-
-1. Update `package.json` with your project name
-2. Modify linting rules according to your needs
-3. Adjust Renovate/Dependabot configuration
-4. Update or replace this README
-
 ## License
 
 MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Author
 
-**Maxime Lenne** - [maxime-lenne.fr](https://maxime-lenne.fr)
+**Maxime Lenne** - [hello@maxime-lenne.fr](mailto:hello@maxime-lenne.fr)
 
 - GitHub: [@maxime-lenne](https://github.com/maxime-lenne)
-- LinkedIn: [maximelenne](https://linkedin.com/in/maximelenne)
