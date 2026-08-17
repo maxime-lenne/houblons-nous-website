@@ -131,6 +131,7 @@ MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Author
 
-**Maxime Lenne** - [hello@maxime-lenne.fr](mailto:hello@maxime-lenne.fr)
+**Maxime Lenne** - [maxime-lenne.fr](https://maxime-lenne.fr)
 
 - GitHub: [@maxime-lenne](https://github.com/maxime-lenne)
+- LinkedIn: [maximelenne](https://linkedin.com/in/maximelenne)
