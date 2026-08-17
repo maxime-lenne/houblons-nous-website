@@ -224,15 +224,61 @@ Configuration in `.yamllint.yml`:
 
 ## Development Workflow
 
-### Daily Process
+### Feature development
 
-1. **Pull** - `git pull origin main`
-2. **Branch** - `git checkout -b feature/description`
-3. **Develop** - Make changes following conventions
-4. **Lint** - `bun run lint`
-5. **Commit** - `bun run commit` (uses gitmoji)
-6. **Push** - `git push origin feature/description`
-7. **PR** - Create pull request
+```bash
+git checkout develop
+git pull origin develop
+git checkout -b feature/description
+
+# ... make changes ...
+bun run lint
+bun run commit
+
+# Before opening PR: rebase on latest develop
+git fetch origin
+git rebase origin/develop
+git push origin feature/description
+# → Open PR: feature/description → develop (rebase merge)
+```
+
+### Merge develop into main
+
+```bash
+# Once feature PRs are merged into develop:
+git fetch origin
+git checkout develop
+git pull origin develop
+# → Open PR: develop → main (rebase merge)
+```
+
+### Hotfix (urgent fix on main)
+
+```bash
+git checkout main
+git pull origin main
+git checkout -b hotfix/description
+
+# ... fix ...
+bun run commit
+# → PR: hotfix/description → main (rebase merge)
+
+# Re-sync develop after hotfix lands on main
+git checkout develop
+git fetch origin
+git rebase origin/main          # ✅ never: git merge main
+git push origin develop --force-with-lease
+```
+
+### Syncing develop when main advances
+
+```bash
+git checkout develop
+git fetch origin
+git rebase origin/main          # ✅ keeps linear history
+git push origin develop --force-with-lease
+# never: git merge main         # ❌ creates a merge commit → blocks rebase PR
+```
 
 ### Pre-commit Checklist
 
@@ -264,4 +310,4 @@ Uses `.github/ISSUE_TEMPLATE/feature_request.yml`:
 
 ---
 
-*Last updated: 2026-02-03*
+*Last updated: 2026-03-03*

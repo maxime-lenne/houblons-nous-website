@@ -4,6 +4,9 @@ Project task tracking.
 
 ## Backlog
 
+- [ ] Renovate vs dependabot
+- [ ] merge auto renovate
+- [ ] Release auto
 - [ ]
 -
 

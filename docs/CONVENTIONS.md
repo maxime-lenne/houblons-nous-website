@@ -126,6 +126,25 @@ project-root/
 
 ## Git Conventions
 
+### Branch Strategy
+
+This project uses a **rebase-only** merge strategy (`develop` → `main`).
+
+```text
+main     ──A──B──────────────────────────────────► (production, never touched directly)
+                \
+develop          C──D──E──────────────────────────► (staging, integration branch)
+                          \
+feature/xxx                F──G──────────────────► (feature branches from develop)
+```
+
+**Golden rules:**
+
+1. **Never commit directly to `main`** — only receives changes via PR from `develop`
+2. **Never commit directly to `develop`** — always go through a feature/fix branch
+3. **Never `git merge main` into `develop`** — use `git rebase origin/main` instead
+4. **Always rebase your branch on `develop`** before opening a PR
+
 ### Branch Naming
 
 ```text
@@ -133,6 +152,7 @@ feature/short-description
 fix/issue-number-description
 refactor/component-name
 docs/update-readme
+hotfix/issue-description
 ```
 
 ### Commit Messages (Gitmoji or Conventional)
@@ -212,4 +232,4 @@ function publicFunction(param: string): void {
 
 ---
 
-*Last updated: 2026-02-03*
+*Last updated: 2026-03-03*
