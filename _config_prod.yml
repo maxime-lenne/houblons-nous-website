@@ -1,0 +1,24 @@
+# Production configuration overrides
+# Use with: bundle exec jekyll build --config _config.yml,_config_prod.yml
+
+# Performance optimizations
+minify: true
+compress: true
+incremental: false
+
+# Image optimization
+compress_images:
+  quality: 85
+  webp: true
+  progressive: true
+
+# Security headers (informational — enforce at the hosting/CDN level)
+security:
+  headers:
+    - "X-Frame-Options: DENY"
+    - "X-Content-Type-Options: nosniff"
+    - "Referrer-Policy: strict-origin-when-cross-origin"
+    - "Permissions-Policy: camera=(), microphone=(), geolocation=()"
+
+# Analytics — uncomment and set once an account exists
+# google_analytics: "G-XXXXXXXXXX"

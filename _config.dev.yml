@@ -1,0 +1,24 @@
+# Development configuration for Jekyll
+# Use with: bundle exec jekyll serve --config _config.yml,_config.dev.yml
+
+port: 4001
+host: 0.0.0.0
+livereload: true
+incremental: true
+watch: true
+
+# Disable optimizations in development
+minify: false
+compress: false
+
+# Silence Sass deprecation warnings
+sass:
+  quiet_deps: true
+
+# Skip jekyll-compress-images in development to avoid hot-reload loops
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-paginate
+  - jekyll-minifier
