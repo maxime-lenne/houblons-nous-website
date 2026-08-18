@@ -1,24 +1,100 @@
-* {
+// Base element styles — see docs/DESIGN_SYSTEM.md
+
+*,
+*::before,
+*::after {
   box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
 }
 
 body {
   margin: 0;
-  font-family: system-ui, sans-serif;
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
   line-height: 1.5;
+  color: var(--color-text-primary);
+  background-color: var(--color-background);
 }
 
-.site-header {
-  padding: 1rem;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  line-height: 1.2;
+  margin: 0 0 var(--space-md);
 }
 
-.site-main {
-  max-width: 40rem;
-  margin: 0 auto;
-  padding: 1rem;
+h1 {
+  font-size: var(--text-4xl);
 }
 
-.site-footer {
-  padding: 1rem;
-  text-align: center;
+h2 {
+  font-size: var(--text-3xl);
+}
+
+h3 {
+  font-size: var(--text-2xl);
+}
+
+h4 {
+  font-size: var(--text-xl);
+}
+
+p {
+  margin: 0 0 var(--space-md);
+}
+
+a {
+  color: var(--color-river);
+  text-decoration: underline;
+  transition: color var(--transition-fast);
+
+  &:hover,
+  &:focus-visible {
+    color: var(--color-brick);
+  }
+}
+
+// Handwritten accent — quotes, callouts, small flourishes
+.accent {
+  font-family: var(--font-script);
+}
+
+// Typewriter accent — labels, dates, small caps details
+time,
+code,
+.label {
+  font-family: var(--font-mono);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-ochre);
+  outline-offset: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--space-md);
+  z-index: 100;
+  padding: var(--space-sm) var(--space-md);
+  background-color: var(--color-ink);
+  color: var(--color-cream);
+  text-decoration: none;
+
+  &:focus {
+    top: var(--space-sm);
+  }
 }

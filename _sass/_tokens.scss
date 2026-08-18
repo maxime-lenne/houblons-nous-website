@@ -1,0 +1,93 @@
+// Design tokens — see docs/DESIGN_SYSTEM.md (source: docs/design-system.png)
+
+// Breakpoints (SCSS variables — not usable as custom properties in media queries)
+$breakpoint-sm: 640px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1280px;
+
+:root {
+  // Typography
+  --font-display: "Saira Stencil One", system-ui, sans-serif;
+  --font-script: "Caveat", cursive;
+  --font-sans: "Work Sans", system-ui, -apple-system, sans-serif;
+  --font-mono: "Special Elite", "SF Mono", monospace;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+
+  // Neutrals — paper & stone
+  --color-ink: #1a1a1a;
+  --color-ink-soft: #3a3a3a;
+  --color-bark: #6e5a3e;
+  --color-river: #4a6e7a;
+  --color-concrete: #bfb8a8;
+  --color-mist: #d9d6cc;
+  --color-paper-warm: #efe6d2;
+  --color-paper: #f5f1e8;
+  --color-cream: #faf7ee;
+  --color-white: #ffffff;
+
+  // Accent — green (hops)
+  --color-green: #2f7a3a;
+  --color-green-soft: #b4cc9a;
+  --color-green-spray: #7fa464;
+  --color-green-base: #3d6c38;
+  --color-green-deep: #284425;
+
+  // Accent — brick (terracotta)
+  --color-brick: #b23a2c;
+  --color-brick-soft: #ddb19e;
+  --color-brick-base: #9a3d2c;
+  --color-brick-deep: #65271b;
+
+  // Accent — ochre (amber / beer)
+  --color-ochre: #d9a227;
+  --color-ochre-soft: #ecd798;
+  --color-ochre-base: #cb9a37;
+  --color-ochre-deep: #89631f;
+
+  // Semantic
+  --color-success: var(--color-green-base);
+  --color-warning: var(--color-ochre-base);
+  --color-error: var(--color-brick-base);
+  --color-info: var(--color-river);
+
+  // Theme
+  --color-background: var(--color-cream);
+  --color-surface: var(--color-paper);
+  --color-text-primary: var(--color-ink);
+  --color-text-secondary: var(--color-ink-soft);
+  --color-border: var(--color-mist);
+
+  // Spacing
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 3rem;
+  --space-2xl: 6rem;
+
+  // Layout
+  --container-max-width: 1280px;
+  --container-padding: clamp(1rem, 5vw, 3rem);
+
+  // Motion
+  --transition-fast: 150ms ease-in-out;
+  --transition-normal: 250ms ease-in-out;
+  --transition-slow: 350ms ease-in-out;
+}
+
+:root[data-theme="dark"] {
+  --color-background: var(--color-ink);
+  --color-surface: var(--color-ink-soft);
+  --color-text-primary: var(--color-cream);
+  --color-text-secondary: var(--color-mist);
+  --color-border: var(--color-bark);
+}

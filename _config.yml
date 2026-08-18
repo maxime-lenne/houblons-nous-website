@@ -1,14 +1,21 @@
 # Site settings
 title: "Houblons Nous"
-email: "hello@maxime-lenne.fr"
-description: "Blog autour de la bière et du houblon"
+email: "houblonsnousbb@gmail.com"
+description: "Bar à bières, Bois Blancs, Lille"
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://houblons-nous.org" # the base hostname & protocol for your site
 
 # Author information
 author:
   name: "Houblons Nous"
-  email: "hello@maxime-lenne.fr"
+  email: "houblonsnousbb@gmail.com"
+
+# Social media
+social:
+  name: "Houblons Nous"
+  links:
+    - "https://www.facebook.com/groups/HoublonsNous"
+    - "https://www.instagram.com/houblonsnousboisblancs/"
 
 # Build settings
 markdown: kramdown
@@ -31,7 +38,8 @@ paginate_path: "/page:num/"
 # SEO configuration
 seo:
   title: "Houblons Nous"
-  description: "Blog autour de la bière et du houblon"
+  description: "Bar à bières, Bois Blancs, Lille"
+  image: "/assets/images/logo-rond.png"
   type: "website"
 
 # Defaults

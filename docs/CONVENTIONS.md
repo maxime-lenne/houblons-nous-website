@@ -66,11 +66,13 @@ Use BEM (Block Element Modifier) or CSS Modules:
 
 ```css
 :root {
-  --color-primary: #2563eb;
+  --color-brick: #b23a2c;
   --spacing-md: 1rem;
   --font-size-base: 16px;
 }
 ```
+
+See [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md) for the full token list.
 
 ---
 
