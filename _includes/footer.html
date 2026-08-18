@@ -1,3 +1,25 @@
 <footer class="site-footer">
+  <ul class="site-footer__links">
+    <li>
+      <a href="mailto:{{ site.email }}" aria-label="Envoyer un email à {{ site.title }}">
+        <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+      </a>
+    </li>
+    {% for link in site.social.links %}
+      <li>
+        {% if link contains 'facebook' %}
+          <a href="{{ link }}" target="_blank" rel="me noopener" aria-label="{{ site.title }} sur Facebook">
+            <i class="fa-brands fa-facebook" aria-hidden="true"></i>
+          </a>
+        {% elsif link contains 'instagram' %}
+          <a href="{{ link }}" target="_blank" rel="me noopener" aria-label="{{ site.title }} sur Instagram">
+            <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+          </a>
+        {% else %}
+          <a href="{{ link }}" target="_blank" rel="me noopener">{{ link }}</a>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
   <p>&copy; {{ 'now' | date: "%Y" }} {{ site.title }}</p>
 </footer>
