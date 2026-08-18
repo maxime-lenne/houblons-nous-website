@@ -1,0 +1,74 @@
+// "Coming soon" landing page — see _layouts/home.html
+
+@use "tokens";
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--color-cream);
+}
+
+.hero__banner {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: clamp(160px, 32vw, 360px);
+    object-fit: cover;
+    object-position: center 65%;
+  }
+}
+
+.hero__place {
+  position: absolute;
+  right: var(--space-md);
+  bottom: var(--space-md);
+  margin: 0;
+  padding: var(--space-xs) var(--space-sm);
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+  font-size: var(--text-lg);
+}
+
+.hero__panel {
+  width: 100%;
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: var(--space-xl) var(--container-padding);
+  text-align: center;
+}
+
+.hero__logo {
+  width: clamp(220px, 45vw, 360px);
+  height: auto;
+  margin: 0 auto var(--space-lg);
+}
+
+.hero__title {
+  font-family: var(--font-script);
+  font-weight: 600;
+  font-size: clamp(2.25rem, 3vw + 1.5rem, 3.5rem);
+  color: var(--color-green-deep);
+}
+
+.hero__lede {
+  max-width: 34rem;
+  margin: 0 auto;
+  color: var(--color-text-secondary);
+  font-size: var(--text-lg);
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.hero__pictos {
+  width: clamp(220px, 55vw, 360px);
+  height: auto;
+  margin: var(--space-xl) auto 0;
+  opacity: 0.9;
+}

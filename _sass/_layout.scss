@@ -1,0 +1,80 @@
+// Page structure — see _layouts/default.html, page.html, post.html
+
+@use "tokens";
+
+.site-header {
+  padding: var(--space-md) var(--container-padding);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.site-header__title {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  color: var(--color-text-primary);
+  text-decoration: none;
+
+  &:hover,
+  &:focus-visible {
+    color: var(--color-brick);
+  }
+}
+
+.site-main {
+  max-width: tokens.$breakpoint-md;
+  margin: 0 auto;
+  padding: var(--container-padding);
+
+  @media (min-width: tokens.$breakpoint-lg) {
+    max-width: var(--container-max-width);
+  }
+}
+
+.site-footer {
+  padding: var(--space-md);
+  text-align: center;
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+  border-top: 1px solid var(--color-border);
+}
+
+.site-footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-sm);
+  list-style: none;
+  margin: 0 0 var(--space-md);
+  padding: 0;
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    color: var(--color-text-secondary);
+    font-size: var(--text-lg);
+    text-decoration: none;
+    transition: color var(--transition-fast), background-color var(--transition-fast);
+
+    &:hover,
+    &:focus-visible {
+      color: var(--color-cream);
+      background-color: var(--color-brick);
+    }
+  }
+}
+
+.page__title,
+.post__title {
+  margin-bottom: var(--space-sm);
+}
+
+.post__date {
+  display: block;
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-lg);
+}
