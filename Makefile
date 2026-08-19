@@ -13,9 +13,9 @@ else
 BUNDLE = bundle
 endif
 
-# Notion CMS environment variables (only needed once notion.enabled is true in _config.yml)
-ENV_VARS = NOTION_TOKEN=$(shell cat .env 2>/dev/null | grep NOTION_TOKEN | cut -d '=' -f2) \
-	NOTION_POSTS_DB=$(shell cat .env 2>/dev/null | grep NOTION_POSTS_DB | cut -d '=' -f2)
+# Baserow CMS environment variables (only needed once baserow.enabled is true in _config.yml)
+ENV_VARS = BASEROW_TOKEN=$(shell cat .env 2>/dev/null | grep BASEROW_TOKEN | cut -d '=' -f2) \
+	BASEROW_POSTS_TABLE=$(shell cat .env 2>/dev/null | grep BASEROW_POSTS_TABLE | cut -d '=' -f2)
 
 help: ## Show this help
 	@echo "Available commands for the Houblons Nous Jekyll site:"
@@ -50,5 +50,5 @@ test: ## Run the production build as a smoke test
 lint: ## Run project linters (see also `bun run lint`)
 	bun run lint
 
-notion-sync: ## Rebuild the site, pulling fresh content from Notion
+baserow-sync: ## Rebuild the site, pulling fresh content from Baserow
 	$(ENV_VARS) $(BUNDLE) exec jekyll build --config _config.yml,_config_prod.yml
