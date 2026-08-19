@@ -58,31 +58,21 @@ defaults:
 # =====================================================
 # BASEROW CMS CONFIGURATION
 # =====================================================
-# Jekyll Baserow Headless CMS Plugin — disabled by default until the Baserow
-# table below exists and BASEROW_TOKEN / BASEROW_POSTS_TABLE are set.
-# Enable by flipping `baserow.enabled` to true once configured.
+# Jekyll Baserow Headless CMS Plugin — enabled now that the Locations table
+# exists and BASEROW_TOKEN / BASEROW_LOCATIONS_TABLE are set in .env.
 baserow:
-  enabled: false
+  enabled: true
 
   collections:
-    posts:
-      table_env: BASEROW_POSTS_TABLE
-      data_file: baserow_posts.yml
+    location:
+      table_env: BASEROW_LOCATIONS_TABLE
+      data_file: baserow_locations.yml
       organizer: simple_list
       sort_by: published_at
       sort_order: desc
       fields:
-        - { name: Title, type: text }
-        - { name: Slug, type: text }
-        - { name: Published At, type: date, key: published_at }
-        - { name: Status, type: single_select } # draft, published, archived
-        - { name: Excerpt, type: long_text }
-        - { name: Content, type: long_text }
-        - { name: Featured Image, type: file, key: featured_image }
-        - { name: Categories, type: multi_select }
-        - { name: Tags, type: multi_select }
-        - { name: Author, type: text }
-
+        - { name: Name, type: text }
+        - { name: Active, type: boolean }
 # Exclude from processing
 exclude:
   - Gemfile

@@ -15,7 +15,8 @@ endif
 
 # Baserow CMS environment variables (only needed once baserow.enabled is true in _config.yml)
 ENV_VARS = BASEROW_TOKEN=$(shell cat .env 2>/dev/null | grep BASEROW_TOKEN | cut -d '=' -f2) \
-	BASEROW_POSTS_TABLE=$(shell cat .env 2>/dev/null | grep BASEROW_POSTS_TABLE | cut -d '=' -f2)
+	BASEROW_LOCATIONS_TABLE=$(shell cat .env 2>/dev/null | grep BASEROW_LOCATIONS_TABLE | cut -d '=' -f2) \
+	BASEROW_API_URL=$(shell cat .env 2>/dev/null | grep BASEROW_API_URL | cut -d '=' -f2)
 
 help: ## Show this help
 	@echo "Available commands for the Houblons Nous Jekyll site:"
