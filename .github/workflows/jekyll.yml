@@ -38,7 +38,7 @@ jobs:
         env:
           JEKYLL_ENV: production
           BASEROW_TOKEN: ${{ secrets.BASEROW_TOKEN }}
-          BASEROW_POSTS_TABLE: ${{ secrets.BASEROW_POSTS_TABLE }}
+          BASEROW_LOCATIONS_TABLE: ${{ secrets.BASEROW_LOCATIONS_TABLE }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
