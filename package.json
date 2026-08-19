@@ -1,7 +1,7 @@
 {
   "name": "houblons-nous-website",
   "version": "1.0.0",
-  "description": "Houblons Nous — static site built with Jekyll and jekyll-notion-cms",
+  "description": "Houblons Nous — static site built with Jekyll and jekyll-baserow-headless-cms",
   "type": "module",
   "main": "index.js",
   "author": "Maxime Lenne",
@@ -9,7 +9,7 @@
   "private": true,
   "keywords": [
     "jekyll",
-    "notion",
+    "baserow",
     "github-pages"
   ],
   "engines": {

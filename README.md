@@ -34,9 +34,9 @@
 ---
 
 Static site for **Houblons Nous**, built with [Jekyll](https://jekyllrb.com) and deployed to
-GitHub Pages. Content can be authored as local Markdown (`_posts/`) or synced from Notion via
-[jekyll-notion-cms](https://rubygems.org/gems/jekyll-notion-cms) once configured — see
-[`docs/AGENTS.md`](docs/AGENTS.md#notion-cms).
+GitHub Pages. Content can be authored as local Markdown (`_posts/`) or synced from Baserow via
+[jekyll-baserow-headless-cms](https://github.com/maxime-lenne/jekyll-baserow-headless-cms)
+(local, unpublished gem) once configured — see [`docs/AGENTS.md`](docs/AGENTS.md#baserow-cms).
 
 This site does not use the [jekyll-deep-stack](https://github.com/maxime-lenne/jekyll-deep-stack)
 theme; layouts, includes, and styles live directly in this repo (`_layouts/`, `_includes/`, `_sass/`).
@@ -44,7 +44,7 @@ theme; layouts, includes, and styles live directly in this repo (`_layouts/`, `_
 ## Stack
 
 - **Jekyll 4.3** (Ruby 3.3.5) — static site generator
-- **jekyll-notion-cms** — optional Notion-backed content (disabled by default)
+- **jekyll-baserow-headless-cms** — optional Baserow-backed content (disabled by default, local gem)
 - **Bun** — JS tooling (linting, git hooks, releases)
 - **Husky + lint-staged** — pre-commit checks
 - **Gitmoji + commitlint** — commit convention
@@ -102,7 +102,7 @@ Hooks are automatically configured via Husky:
 
 | File | Description |
 |------|-------------|
-| [`docs/AGENTS.md`](docs/AGENTS.md) | AI assistant guide, tech stack, and Notion CMS setup |
+| [`docs/AGENTS.md`](docs/AGENTS.md) | AI assistant guide, tech stack, and Baserow CMS setup |
 | [`docs/CONVENTIONS.md`](docs/CONVENTIONS.md) | Code style and git conventions |
 | [`docs/TECHNICAL_GUIDE.md`](docs/TECHNICAL_GUIDE.md) | Technical implementation details |
 | [`docs/PROJECT_STRUCTURE.md`](docs/PROJECT_STRUCTURE.md) | Directory and file organization |
@@ -113,11 +113,11 @@ Hooks are automatically configured via Husky:
 
 | File | Purpose |
 |------|---------|
-| `_config.yml` | Jekyll site settings, plugins, Notion CMS collections |
+| `_config.yml` | Jekyll site settings, plugins, Baserow CMS collections |
 | `_config.dev.yml` / `_config_prod.yml` | Environment overrides (`--config _config.yml,_config.dev.yml`) |
 | `Gemfile` | Ruby dependencies (Jekyll + plugins) |
 | `Makefile` | Build/serve/deploy commands |
-| `env.sample` | Template for `.env` (Notion CMS credentials) |
+| `env.sample` | Template for `.env` (Baserow CMS credentials) |
 | `.gitmoji.json` | Gitmoji-cli settings |
 | `.releaserc.json` | Semantic-release config |
 | `.markdownlint.json` | Markdown linting rules |

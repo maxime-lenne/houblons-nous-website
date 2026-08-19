@@ -37,8 +37,8 @@ jobs:
         run: make production
         env:
           JEKYLL_ENV: production
-          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
-          NOTION_POSTS_DB: ${{ secrets.NOTION_POSTS_DB }}
+          BASEROW_TOKEN: ${{ secrets.BASEROW_TOKEN }}
+          BASEROW_POSTS_TABLE: ${{ secrets.BASEROW_POSTS_TABLE }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

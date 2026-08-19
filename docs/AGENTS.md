@@ -23,7 +23,7 @@ Complete guide for AI assistants working on this repository.
 | Category | Technology |
 |----------|------------|
 | Site Generator | Jekyll 4.3 (Ruby 3.3.5) |
-| CMS | jekyll-notion-cms (disabled by default, see `_config.yml` `notion:`) |
+| CMS | jekyll-baserow-headless-cms (local gem, disabled by default, see `_config.yml` `baserow:`) |
 | Theme | None — this site is not built on jekyll-deep-stack; layouts live in `_layouts/`/`_includes` here |
 | Hosting | GitHub Pages, deployed via `.github/workflows/jekyll.yml` on push to `main` |
 | Package Manager | Bun |
@@ -53,14 +53,16 @@ bun run lint:commit   # Validate last commit message
 bun run commit        # Interactive gitmoji commit
 ```
 
-### Notion CMS
+### Baserow CMS
 
-`notion.enabled` is `false` in `_config.yml` until Notion databases exist. To enable:
+`jekyll-baserow-headless-cms` is consumed as a local, unpublished gem from a sibling checkout
+(`../jekyll-baserow-headless-cms`, see `Gemfile`). `baserow.enabled` is `false` in `_config.yml`
+until the Baserow table exists. To enable:
 
-1. Create the Notion databases matching the `notion.collections` schema in `_config.yml`.
-2. Copy `env.sample` to `.env` and fill in `NOTION_TOKEN` / `NOTION_POSTS_DB` (or export them
-   as GitHub Actions secrets for CI).
-3. Set `notion.enabled: true` in `_config.yml`.
+1. Create the Baserow table matching the `baserow.collections` schema in `_config.yml`.
+2. Copy `env.sample` to `.env` and fill in `BASEROW_TOKEN` / `BASEROW_POSTS_TABLE` (or export
+   them as GitHub Actions secrets for CI).
+3. Set `baserow.enabled: true` in `_config.yml`.
 
 ---
 
