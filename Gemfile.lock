@@ -1,9 +1,3 @@
-PATH
-  remote: ../jekyll-baserow-headless-cms
-  specs:
-    jekyll-baserow-headless-cms (0.1.0)
-      jekyll (>= 3.7, < 5.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -117,6 +111,8 @@ GEM
       safe_yaml (~> 1.0)
       terminal-table (>= 1.8, < 4.0)
       webrick (~> 1.7)
+    jekyll-baserow-headless-cms (0.1.0)
+      jekyll (>= 3.7, < 5.0)
     jekyll-compress-images (1.2)
       image_optim
       image_optim_pack
@@ -229,7 +225,7 @@ DEPENDENCIES
   csv
   http_parser.rb (~> 0.6.0)
   jekyll (~> 4.3.0)
-  jekyll-baserow-headless-cms!
+  jekyll-baserow-headless-cms (~> 0.1.0)
   jekyll-compress-images (~> 1.1)
   jekyll-feed (~> 0.17)
   jekyll-minifier (~> 0.1)
