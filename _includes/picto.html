@@ -1,0 +1,23 @@
+{%- comment -%}
+  Renders one of the site's 3 hand-drawn-style pictograms.
+  Usage: {% include picto.html type="hop" class="picto--green" %}
+  Params: type ("hop" | "tank" | "glass"), class (optional extra classes)
+{%- endcomment -%}
+{%- case include.type -%}
+  {%- when "hop" -%}
+    <svg class="picto{% if include.class %} {{ include.class }}{% endif %}" viewBox="0 0 48 48" fill="currentColor" aria-hidden="true">
+      <path d="M24 4c10 0 16 9 16 20s-6 20-16 20S8 35 8 24 14 4 24 4Z" />
+      <rect x="23" y="9" width="2" height="30" fill="var(--color-cream)" />
+    </svg>
+  {%- when "tank" -%}
+    <svg class="picto{% if include.class %} {{ include.class }}{% endif %}" viewBox="0 0 48 48" fill="currentColor" aria-hidden="true">
+      <path d="M14 18v-4a10 10 0 0 1 20 0v4Z" />
+      <path d="M10 20a2 2 0 0 1 2-2h24a2 2 0 0 1 2 2v20a2 2 0 0 1-2 2H12a2 2 0 0 1-2-2Z" />
+      <rect x="18" y="26" width="12" height="10" rx="2" fill="var(--color-cream)" />
+    </svg>
+  {%- when "glass" -%}
+    <svg class="picto{% if include.class %} {{ include.class }}{% endif %}" viewBox="0 0 48 48" fill="currentColor" aria-hidden="true">
+      <path d="M14 6h20l-4 36H18Z" />
+      <rect x="14.6" y="6" width="18.8" height="6" fill="var(--color-cream)" />
+    </svg>
+{%- endcase -%}

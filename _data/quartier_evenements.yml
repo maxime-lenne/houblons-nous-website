@@ -1,0 +1,48 @@
+- day: "12"
+  month: "OCT"
+  bg: green
+  fg: cream
+  category: "Culture"
+  title: "[NOM DE L'ÉVÉNEMENT]"
+  lieu: "[LIEU]"
+  orga: "[ORGANISATEUR]"
+- day: "19"
+  month: "OCT"
+  bg: brick
+  fg: cream
+  category: "Jardinage"
+  title: "[NOM DE L'ÉVÉNEMENT]"
+  lieu: "[LIEU]"
+  orga: "[ORGANISATEUR]"
+- day: "26"
+  month: "OCT"
+  bg: ochre
+  fg: ink
+  category: "Sport"
+  title: "[NOM DE L'ÉVÉNEMENT]"
+  lieu: "[LIEU]"
+  orga: "[ORGANISATEUR]"
+- day: "02"
+  month: "NOV"
+  bg: river
+  fg: cream
+  category: "Solidarité"
+  title: "[NOM DE L'ÉVÉNEMENT]"
+  lieu: "[LIEU]"
+  orga: "[ORGANISATEUR]"
+- day: "09"
+  month: "NOV"
+  bg: green
+  fg: cream
+  category: "Culture"
+  title: "[NOM DE L'ÉVÉNEMENT]"
+  lieu: "[LIEU]"
+  orga: "[ORGANISATEUR]"
+- day: "16"
+  month: "NOV"
+  bg: ochre
+  fg: ink
+  category: "Environnement"
+  title: "[NOM DE L'ÉVÉNEMENT]"
+  lieu: "[LIEU]"
+  orga: "[ORGANISATEUR]"

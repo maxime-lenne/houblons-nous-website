@@ -1,0 +1,11 @@
+{%- comment -%}
+  Params: href (required), variant ("green"|"brick"|"ochre"|"cream"|"ink"|"outline", default "green"),
+  label (required), target (optional, e.g. "_blank"), aria_label (optional)
+{%- endcomment -%}
+{%- assign variant = include.variant | default: "green" -%}
+<a
+  href="{{ include.href }}"
+  class="stencil-button stencil-button--{{ variant }}{% unless variant == "outline" %} stencil-card stencil-hover{% endunless %} label-mono"
+  {% if include.target %}target="{{ include.target }}" rel="noopener"{% endif %}
+  {% if include.aria_label %}aria-label="{{ include.aria_label }}"{% endif %}
+>{{ include.label }}</a>

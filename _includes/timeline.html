@@ -1,0 +1,13 @@
+{%- comment -%}
+  Params: items (required) — array of { label, title, text }
+{%- endcomment -%}
+<ol class="timeline">
+  {%- for item in include.items -%}
+    <li class="timeline__item">
+      <span class="timeline__dot" aria-hidden="true">{% include picto.html type="hop" class="picto--sm" %}</span>
+      <span class="timeline__label label-mono font-display">{{ item.label }}</span>
+      <h3 class="timeline__title">{{ item.title }}</h3>
+      {%- if item.text -%}<p class="timeline__text">{{ item.text }}</p>{%- endif -%}
+    </li>
+  {%- endfor -%}
+</ol>

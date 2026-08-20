@@ -1,69 +1,173 @@
-// Page structure — see _layouts/default.html, page.html, post.html
+// Page structure — see _layouts/default.html, page.html, post.html,
+// _includes/header.html, _includes/footer.html
 
 @use "tokens";
 
+// ---------------------------------------------------------------------------
+// Header
+// ---------------------------------------------------------------------------
+
 .site-header {
-  padding: var(--space-md) var(--container-padding);
-  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-bottom: 2px solid var(--color-ink);
+  background-color: rgb(245 241 232 / 95%); // paper/95
 }
 
-.site-header__title {
-  font-family: var(--font-display);
-  font-size: var(--text-xl);
-  color: var(--color-text-primary);
-  text-decoration: none;
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding-block: var(--space-sm);
+}
 
-  &:hover,
-  &:focus-visible {
-    color: var(--color-brick);
+.site-header__logo {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+
+  img {
+    height: 2.75rem;
+    width: auto;
+    flex-shrink: 0;
   }
 }
 
+.site-header__nav {
+  display: none;
+  align-items: center;
+  gap: var(--space-lg);
+
+  @media (min-width: tokens.$breakpoint-lg) {
+    display: flex;
+  }
+}
+
+.site-header__nav-link {
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+  padding-bottom: var(--space-xs);
+  transition: border-color var(--transition-fast);
+
+  &:hover,
+  &:focus-visible,
+  &[aria-current="page"] {
+    border-color: var(--color-green);
+    color: var(--color-ink);
+  }
+}
+
+.site-header__cta {
+  background-color: var(--color-green);
+  color: var(--color-cream);
+  padding: var(--space-sm) var(--space-md);
+  text-decoration: none;
+  display: inline-block;
+}
+
+.site-header__burger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+  border: none;
+  padding: var(--space-sm);
+  cursor: pointer;
+
+  @media (min-width: tokens.$breakpoint-lg) {
+    display: none;
+  }
+
+  svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}
+
+.site-header__mobile {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  flex-direction: column;
+  background-color: var(--color-green-deep);
+  padding: var(--space-lg) var(--space-lg);
+
+  &.is-open {
+    display: flex;
+  }
+
+  @media (min-width: tokens.$breakpoint-lg) {
+    display: none !important;
+  }
+}
+
+.site-header__mobile-close {
+  align-self: flex-end;
+  background: none;
+  border: none;
+  color: var(--color-cream);
+  padding: var(--space-sm);
+  cursor: pointer;
+
+  svg {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+}
+
+.site-header__mobile-nav {
+  margin-top: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.site-header__mobile-link {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  text-transform: uppercase;
+  line-height: 1;
+  color: var(--color-cream);
+  text-decoration: none;
+}
+
+.site-header__mobile-cta {
+  margin-top: var(--space-md);
+  align-self: flex-start;
+  background-color: var(--color-ochre);
+  color: var(--color-ink);
+  padding: var(--space-sm) var(--space-lg);
+  text-decoration: none;
+  display: inline-block;
+}
+
+// ---------------------------------------------------------------------------
+// Main content area
+// ---------------------------------------------------------------------------
+
+// Full-bleed: individual sections/pages own their width via .container-page.
 .site-main {
+  width: 100%;
+}
+
+// Constrained reading width for generic content pages (page.html / post.html).
+.page,
+.post {
   max-width: tokens.$breakpoint-md;
   margin: 0 auto;
   padding: var(--container-padding);
 
   @media (min-width: tokens.$breakpoint-lg) {
     max-width: var(--container-max-width);
-  }
-}
-
-.site-footer {
-  padding: var(--space-md);
-  text-align: center;
-  color: var(--color-text-secondary);
-  font-size: var(--text-sm);
-  border-top: 1px solid var(--color-border);
-}
-
-.site-footer__links {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: var(--space-sm);
-  list-style: none;
-  margin: 0 0 var(--space-md);
-  padding: 0;
-
-  a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 2.25rem;
-    height: 2.25rem;
-    border-radius: 50%;
-    color: var(--color-text-secondary);
-    font-size: var(--text-lg);
-    text-decoration: none;
-    transition: color var(--transition-fast), background-color var(--transition-fast);
-
-    &:hover,
-    &:focus-visible {
-      color: var(--color-cream);
-      background-color: var(--color-brick);
-    }
   }
 }
 
@@ -77,4 +181,72 @@
   color: var(--color-text-secondary);
   font-size: var(--text-sm);
   margin-bottom: var(--space-lg);
+}
+
+// ---------------------------------------------------------------------------
+// Footer
+// ---------------------------------------------------------------------------
+
+.site-footer {
+  background-color: var(--color-ink);
+  color: var(--color-mist);
+}
+
+.site-footer__grid {
+  display: grid;
+  gap: var(--space-xl);
+  padding-block: var(--space-xl);
+  grid-template-columns: 1fr;
+
+  @media (min-width: tokens.$breakpoint-md) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.site-footer__brand {
+  img {
+    height: 5rem;
+    width: 5rem;
+    margin-bottom: var(--space-sm);
+  }
+
+  p {
+    margin: 0 0 var(--space-xs);
+  }
+}
+
+.site-footer__heading {
+  color: var(--color-brick);
+  font-size: var(--text-lg);
+  margin: 0 0 var(--space-sm);
+}
+
+.site-footer__links-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+
+  a {
+    color: var(--color-mist);
+    text-decoration: none;
+
+    &:hover,
+    &:focus-visible {
+      color: var(--color-cream);
+    }
+  }
+}
+
+.site-footer__ticker {
+  background-color: var(--color-brick);
+  padding-block: var(--space-sm);
+  text-align: center;
+
+  p {
+    margin: 0;
+    color: var(--color-cream);
+  }
 }

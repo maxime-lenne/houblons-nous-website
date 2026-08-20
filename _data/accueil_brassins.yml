@@ -1,0 +1,21 @@
+- date: "[DATE À CONFIRMER]"
+  name: "[NOM DU BRASSIN]"
+  style: "Style : [À CONFIRMER]"
+  lieu: "Lieu : [À CONFIRMER]"
+  etat: "Complet"
+  etat_bg: brick
+  etat_fg: cream
+- date: "[DATE À CONFIRMER]"
+  name: "[NOM DU BRASSIN]"
+  style: "Style : [À CONFIRMER]"
+  lieu: "Lieu : [À CONFIRMER]"
+  etat: "Places dispo"
+  etat_bg: green
+  etat_fg: cream
+- date: "[DATE À CONFIRMER]"
+  name: "[NOM DU BRASSIN]"
+  style: "Style : [À CONFIRMER]"
+  lieu: "Lieu : [À CONFIRMER]"
+  etat: "À venir"
+  etat_bg: concrete
+  etat_fg: ink

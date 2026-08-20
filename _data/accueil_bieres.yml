@@ -1,0 +1,12 @@
+- name: "Se la couler douze"
+  bg: ochre
+  fg: ink
+  badge: "Brassée chez Belnaert"
+- name: "Bhop en fût"
+  bg: brick
+  fg: cream
+  badge: "Brassée chez Belnaert"
+- name: "Bhop en fût"
+  bg: green
+  fg: cream
+  badge: "Brassée en collectif"

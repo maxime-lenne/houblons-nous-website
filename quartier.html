@@ -1,0 +1,115 @@
+---
+layout: default
+title: "Le quartier — Bois Blancs, Lille"
+description: "Une île au bout de Lille, cernée par la Deûle. Le quartier où pousse notre houblon, et où l'asso prend racine."
+permalink: /quartier/
+---
+
+<section class="quartier-hero">
+  <img
+    class="quartier-hero__bg"
+    src="{{ '/assets/images/photo-mur.png' | relative_url }}"
+    alt="Fresque murale de houblon sur un mur de brique aux Bois Blancs"
+    fetchpriority="high">
+  <div class="quartier-hero__overlay" aria-hidden="true"></div>
+
+  <div class="container-page quartier-hero__content">
+    <p class="hand quartier-hero__over">notre terrain de jeu</p>
+    <h1 class="quartier-hero__title">Les Bois Blancs</h1>
+    <p class="quartier-hero__lede">Une île au bout de Lille, cernée par la Deûle. Le quartier où pousse notre houblon, et où l'asso prend racine.</p>
+  </div>
+</section>
+
+<section class="section-pad">
+  <div class="container-page description__grid">
+    <div>
+      {% include section-header.html overtitle="l'endroit qu'on brasse" title="Le quartier" %}
+      <p>Les Bois Blancs, une île au bout de Lille, cernée par la Deûle. Entre friches industrielles réhabilitées, jardins partagés et bouleaux, c'est un quartier de village dans la ville.</p>
+      <p>On y croise des cyclistes, des jardiniers, des anciens de l'usine et des familles qui s'installent. Une vraie vie de quartier, avec ses commerces, ses assos et ses fêtes — le terreau idéal pour une asso de brasseurs.</p>
+      <p>C'est ici, sur les murs et dans les jardins, que pousse notre houblon. Et c'est ici qu'on se retrouve, après le brassin, pour le goûter.</p>
+    </div>
+
+    <aside class="stencil-card reperes">
+      <p class="label-mono reperes__title">Repères du quartier</p>
+      <ul class="reperes__list">
+        <li>
+          {% include picto.html type="hop" class="picto--sm" %}
+          <div><p class="reperes__item-title">La Deûle</p><p>Le bras d'eau qui borde le quartier.</p></div>
+        </li>
+        <li>
+          {% include picto.html type="hop" class="picto--sm" %}
+          <div><p class="reperes__item-title">Le parc</p><p>Un poumon vert à deux pas des cuves.</p></div>
+        </li>
+        <li>
+          {% include picto.html type="hop" class="picto--sm" %}
+          <div><p class="reperes__item-title">Les jardins partagés</p><p>Là où pousse aussi notre houblon.</p></div>
+        </li>
+        <li>
+          {% include picto.html type="hop" class="picto--sm" %}
+          <div><p class="reperes__item-title">L'Union</p><p>L'ancien site industriel réhabilité.</p></div>
+        </li>
+      </ul>
+    </aside>
+  </div>
+</section>
+
+<section class="assos section-pad">
+  <div class="container-page">
+    {% include section-header.html overtitle="le réseau du coin" title="On n'est pas tout seuls" %}
+    <p>Les Bois Blancs fourmillent d'assos. On croise les leurs, on partage des bouts de local et des bouts de bière.</p>
+
+    <div class="assos__grid">
+      {% for a in site.data.quartier_assos %}
+        <div class="stencil-card stencil-hover assos__card assos__card--{{ a.color }}">
+          <p class="label-mono assos__theme">{{ a.theme }}</p>
+          <h3>{{ a.name }}</h3>
+          <p>{{ a.desc }}</p>
+          <a href="{{ a.url }}" target="_blank" rel="noopener" aria-label="Voir le site de {{ a.name }}" class="label-mono">Voir le site →</a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="evenements section-pad">
+  <div class="container-page">
+    {% include section-header.html overtitle="l'agenda du coin" title="Ce qui se passe dans le quartier" %}
+
+    <div class="evenements__filters" role="group" aria-label="Filtrer les événements par catégorie" data-event-filters>
+      <button type="button" class="stencil-button label-mono" data-filter="tous" aria-pressed="true">Tous</button>
+      <button type="button" class="stencil-button label-mono" data-filter="Culture" aria-pressed="false">Culture</button>
+      <button type="button" class="stencil-button label-mono" data-filter="Jardinage" aria-pressed="false">Jardinage</button>
+      <button type="button" class="stencil-button label-mono" data-filter="Sport" aria-pressed="false">Sport</button>
+      <button type="button" class="stencil-button label-mono" data-filter="Solidarité" aria-pressed="false">Solidarité</button>
+      <button type="button" class="stencil-button label-mono" data-filter="Environnement" aria-pressed="false">Environnement</button>
+    </div>
+
+    <ul class="evenements__list" data-event-list>
+      {% for e in site.data.quartier_evenements %}
+        <li>
+          <article class="stencil-card stencil-hover evenements__item" data-category="{{ e.category }}">
+            {% include date-block.html day=e.day month=e.month bg=e.bg fg=e.fg %}
+            <div class="evenements__info">
+              <p class="evenements__title">{{ e.title }}</p>
+              <p class="label-mono">{{ e.lieu }} · {{ e.orga }}</p>
+            </div>
+            <span class="label-mono evenements__badge">{{ e.category }}</span>
+            <span class="evenements__arrow" aria-hidden="true">→</span>
+          </article>
+        </li>
+      {% endfor %}
+    </ul>
+
+    <p class="evenements__empty" data-event-empty hidden>Aucun événement dans cette catégorie pour l'instant.</p>
+  </div>
+</section>
+
+<section class="grain quartier-cta section-pad">
+  <div class="container-page">
+    <p class="hand quartier-cta__over">par ici la main levée</p>
+    <h2>Un événement à nous signaler&nbsp;?</h2>
+    <p>Fête de quartier, marché, atelier ou brassin ouvert : on veut le savoir. Écrivez-nous, on l'ajoute à la liste.</p>
+    {% capture mailto_event %}mailto:{{ site.email }}?subject=%C3%89v%C3%A9nement%20aux%20Bois%20Blancs{% endcapture %}
+    {% include stencil-button.html href=mailto_event variant="ochre" label="Signaler un événement" %}
+  </div>
+</section>

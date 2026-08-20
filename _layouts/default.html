@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="fr">
   {% include head.html %}
-  <body>
+  <body class="grain">
     <a href="#main-content" class="skip-link">Skip to main content</a>
     {% include header.html %}
     <main id="main-content" class="site-main">
       {{ content }}
     </main>
     {% include footer.html %}
+    <script src="{{ '/assets/js/main.js' | relative_url }}" defer></script>
   </body>
 </html>

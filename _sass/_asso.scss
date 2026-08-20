@@ -1,0 +1,357 @@
+// L'asso ("/asso") — see asso.html
+
+@use "tokens";
+
+// ---------------------------------------------------------------------------
+// Hero
+// ---------------------------------------------------------------------------
+
+.asso-hero {
+  position: relative;
+  border-bottom: 2px solid var(--color-ink);
+  overflow: hidden;
+}
+
+.asso-hero__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin: 0;
+}
+
+.asso-hero__content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-xl);
+  padding-block: 4rem;
+}
+
+.asso-hero__badge {
+  display: none;
+  width: 12rem;
+  height: 12rem;
+  transform: rotate(-4deg);
+  flex-shrink: 0;
+
+  @media (min-width: tokens.$breakpoint-md) {
+    display: block;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// À propos
+// ---------------------------------------------------------------------------
+
+.apropos__grid {
+  display: grid;
+  gap: var(--space-xl);
+
+  @media (min-width: tokens.$breakpoint-lg) {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+.apropos__stats {
+  height: fit-content;
+  background-color: var(--color-cream);
+  padding: var(--space-lg);
+}
+
+.apropos__stats-title {
+  color: var(--color-green);
+  margin: 0 0 var(--space-md);
+}
+
+.apropos__stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-lg);
+
+  div {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.apropos__stat-value {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  color: var(--color-ink);
+}
+
+// ---------------------------------------------------------------------------
+// Historique — timeline (shared include, see _includes/timeline.html)
+// ---------------------------------------------------------------------------
+
+.historique {
+  background-color: var(--color-paper-warm);
+  border-block: 2px solid var(--color-ink);
+}
+
+.timeline {
+  list-style: none;
+  margin: var(--space-xl) 0 0;
+  padding: 0 0 0 var(--space-lg);
+  border-left: 2px dashed var(--color-green);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+
+  @media (min-width: tokens.$breakpoint-md) {
+    border-left: none;
+    border-top: 2px dashed var(--color-green);
+    padding: var(--space-xl) 0 0;
+    flex-direction: row;
+    gap: var(--space-lg);
+    overflow-x: auto;
+  }
+}
+
+.timeline__item {
+  position: relative;
+  min-width: 0;
+
+  @media (min-width: tokens.$breakpoint-md) {
+    flex: 1;
+    min-width: 150px;
+    text-align: center;
+  }
+}
+
+.timeline__dot {
+  position: absolute;
+  left: -1.65rem;
+  top: 0.4rem;
+  color: var(--color-green);
+
+  @media (min-width: tokens.$breakpoint-md) {
+    left: 50%;
+    top: -2.35rem;
+    transform: translateX(-50%);
+  }
+}
+
+.timeline__label {
+  display: block;
+  color: var(--color-green);
+  font-size: var(--text-2xl);
+}
+
+.timeline__title {
+  margin: var(--space-xs) 0;
+}
+
+.timeline__text {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+// ---------------------------------------------------------------------------
+// Notre local
+// ---------------------------------------------------------------------------
+
+.local__grid {
+  display: grid;
+  gap: var(--space-xl);
+
+  @media (min-width: tokens.$breakpoint-lg) {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+}
+
+.local__photo {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background-color: var(--color-paper);
+  background-image: repeating-linear-gradient(
+      0deg,
+      var(--color-brick) 0,
+      var(--color-brick) 2px,
+      transparent 2px,
+      transparent 34px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      var(--color-brick) 0,
+      var(--color-brick) 2px,
+      transparent 2px,
+      transparent 74px
+    );
+  background-blend-mode: multiply;
+  opacity: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.local__photo-label {
+  background-color: var(--color-cream);
+  padding: var(--space-sm) var(--space-md);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: var(--text-xs);
+}
+
+.local__horaires {
+  list-style: none;
+  margin: var(--space-lg) 0;
+  padding: 0;
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--space-sm) 0;
+    border-bottom: 1px dashed var(--color-concrete);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Le CA / Le bureau
+// ---------------------------------------------------------------------------
+
+.ca {
+  background-color: var(--color-paper-warm);
+  border-block: 2px solid var(--color-ink);
+}
+
+.ca__grid {
+  display: grid;
+  gap: var(--space-lg);
+  margin-top: var(--space-xl);
+  grid-template-columns: repeat(2, 1fr);
+
+  @media (min-width: tokens.$breakpoint-md) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.ca__card {
+  background-color: var(--color-cream);
+  padding: var(--space-lg);
+  text-align: center;
+}
+
+.ca__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  font-family: var(--font-display);
+  margin-bottom: var(--space-sm);
+
+  &--green {
+    background-color: var(--color-green);
+    color: var(--color-cream);
+  }
+
+  &--brick {
+    background-color: var(--color-brick);
+    color: var(--color-cream);
+  }
+
+  &--ochre {
+    background-color: var(--color-ochre);
+    color: var(--color-ink);
+  }
+
+  &--river {
+    background-color: var(--color-river);
+    color: var(--color-cream);
+  }
+}
+
+.ca__name {
+  font-family: var(--font-display);
+  margin: 0;
+}
+
+.bureau__grid {
+  display: grid;
+  gap: var(--space-lg);
+  margin-top: var(--space-xl);
+
+  @media (min-width: tokens.$breakpoint-md) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.bureau__card {
+  background-color: var(--color-cream);
+  padding: var(--space-lg);
+  text-align: center;
+}
+
+.bureau__badge {
+  width: 7rem;
+  height: 7rem;
+  font-size: var(--text-2xl);
+}
+
+.bureau__role {
+  color: var(--color-green);
+  margin: var(--space-xs) 0 var(--space-sm);
+}
+
+.bureau__quote {
+  color: var(--color-text-secondary);
+}
+
+// ---------------------------------------------------------------------------
+// Partenariat Belnaert
+// ---------------------------------------------------------------------------
+
+.belnaert {
+  background-color: var(--color-brick);
+  color: var(--color-cream);
+  border-block: 2px solid var(--color-ink);
+
+  h2 {
+    color: var(--color-cream);
+  }
+}
+
+.belnaert__over {
+  color: var(--color-brick-soft);
+}
+
+.belnaert__grid {
+  display: grid;
+  gap: var(--space-xl);
+  align-items: center;
+
+  @media (min-width: tokens.$breakpoint-lg) {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+.belnaert__logo {
+  border: 2px dashed var(--color-cream);
+  padding: var(--space-xl);
+  text-align: center;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: var(--text-xs);
+}
+
+// ---------------------------------------------------------------------------
+// Adhésion
+// ---------------------------------------------------------------------------
+
+.adhesion {
+  background-color: var(--color-ochre);
+  color: var(--color-ink);
+}
+
+.adhesion__over {
+  color: var(--color-brick-deep);
+}

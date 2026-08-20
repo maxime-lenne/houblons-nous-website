@@ -1,0 +1,197 @@
+// Shared visual-language utilities — the "stencil / linogravure" look used
+// across header, footer, and every page. See docs/DESIGN_SYSTEM.md.
+
+@use "tokens";
+
+.container-page {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin-inline: auto;
+  padding-inline: var(--container-padding);
+}
+
+.section-pad {
+  padding-block: 3.5rem;
+
+  @media (min-width: tokens.$breakpoint-md) {
+    padding-block: 6rem;
+  }
+}
+
+.label-mono {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: var(--text-xs);
+}
+
+.hand {
+  font-family: var(--font-script);
+  font-style: italic;
+  font-size: 1.375rem;
+  line-height: 1.2;
+}
+
+// Paper-grain noise overlay — applied to <body>, ~4% opacity.
+.grain {
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
+
+// Wavelet section divider — see _includes/waves.html.
+.waves {
+  display: block;
+  width: 100%;
+  height: 0.75rem;
+  color: var(--color-river);
+}
+
+// Stamped-print card: crisp ink border + solid offset shadow, no gradients/blur.
+.stencil-card {
+  border: 2px solid var(--color-ink);
+  border-radius: 4px;
+  box-shadow: 6px 6px 0 var(--color-ink);
+  transition:
+    transform 150ms ease,
+    box-shadow 150ms ease,
+    border-color 150ms ease;
+}
+
+.stencil-hover:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 3px 3px 0 var(--color-ink);
+}
+
+// Scroll-reveal — see assets/js/main.js (IntersectionObserver toggles data-visible).
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 600ms ease,
+    transform 600ms ease;
+
+  &[data-visible="true"] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+// Stencil-style buttons — see _includes/stencil-button.html.
+.stencil-button {
+  display: inline-block;
+  padding: var(--space-sm) var(--space-lg);
+  text-align: center;
+  text-decoration: none;
+
+  &--green {
+    background-color: var(--color-green);
+    color: var(--color-cream);
+  }
+
+  &--brick {
+    background-color: var(--color-brick);
+    color: var(--color-cream);
+  }
+
+  &--ochre {
+    background-color: var(--color-ochre);
+    color: var(--color-ink);
+  }
+
+  &--cream {
+    background-color: var(--color-cream);
+    color: var(--color-ink);
+  }
+
+  &--ink {
+    background-color: var(--color-ink);
+    color: var(--color-cream);
+  }
+
+  &--outline {
+    border: 2px solid var(--color-cream);
+    color: var(--color-cream);
+    background: none;
+    transition: background-color var(--transition-fast), color var(--transition-fast);
+
+    &:hover,
+    &:focus-visible {
+      background-color: var(--color-cream);
+      color: var(--color-brick);
+    }
+  }
+}
+
+// Same visual language, used as JS-driven <button> toggles (quartier filters).
+button.stencil-button {
+  cursor: pointer;
+  font: inherit;
+
+  &[aria-pressed="true"] {
+    background-color: var(--color-green);
+    color: var(--color-cream);
+  }
+
+  &[aria-pressed="false"] {
+    background-color: var(--color-cream);
+    color: var(--color-ink);
+  }
+}
+
+// Section header (over-title + heading) — see _includes/section-header.html.
+.section-header__over {
+  color: var(--color-green);
+
+  &--invert {
+    color: var(--color-green-soft);
+  }
+}
+
+.section-header__title {
+  margin-top: var(--space-xs);
+
+  &--invert {
+    color: var(--color-cream);
+  }
+}
+
+// Hand-drawn pictograms (see _includes/picto.html) — sized per context.
+.picto {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+
+  &--sm {
+    width: 0.75rem;
+    height: 0.75rem;
+  }
+
+  &--lg {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

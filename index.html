@@ -1,0 +1,179 @@
+---
+layout: default
+title: "Houblons-Nous — Brasseurs amateurs, Bois Blancs à Lille"
+description: "On cultive le houblon, on brasse la bière, on la boit ensemble. Association de brasseurs amateurs aux Bois Blancs, Lille."
+permalink: /
+---
+
+<section class="hero">
+  <img
+    class="hero__bg"
+    src="{{ '/assets/images/illu-riviere.png' | relative_url }}"
+    alt="Linogravure : poisson-houblon bondissant au-dessus de la Deûle devant la skyline de Lille"
+    fetchpriority="high">
+  <div class="hero__overlay" aria-hidden="true"></div>
+
+  <div class="container-page hero__content">
+    <div class="stencil-card hero__card">
+      <p class="label-mono hero__label">Bois Blancs · Lille · brasseurs amateurs</p>
+      <h1>{{ site.title }}</h1>
+      <p class="hero__lede">On cultive le houblon, on brasse la bière, on la boit ensemble. Depuis les Bois Blancs, entre la Deûle et les bouleaux.</p>
+      <div class="hero__actions">
+        {% include stencil-button.html href="#nos-bieres" variant="green" label="Découvrir nos bières" %}
+        {% capture mailto_join %}mailto:{{ site.email }}?subject=Rejoindre%20l'asso{% endcapture %}
+        {% include stencil-button.html href=mailto_join variant="cream" label="Nous rejoindre" %}
+      </div>
+    </div>
+  </div>
+
+  <p class="label-mono hero__strip">▸ Prochain rendez-vous : la récolte — [DATE À CONFIRMER]</p>
+</section>
+
+<section id="actes" class="section-pad">
+  <div class="container-page">
+    {% include section-header.html overtitle="notre boucle courte" title="Trois actes, une asso" %}
+
+    <div class="actes__grid">
+      <div class="actes__card">
+        <img src="{{ '/assets/images/picto-hop.png' | relative_url }}" alt="" class="actes__icon" loading="lazy">
+        <h3>Culture</h3>
+        <p>Houblon Cascade et Centennial sur la dalle. Tuteurs, paillage, taille, récolte. Mains dans la terre.</p>
+        <a href="{{ '/asso/' | relative_url }}" class="label-mono actes__link">En savoir plus →</a>
+      </div>
+      <div class="actes__card">
+        <img src="{{ '/assets/images/picto-kettle.png' | relative_url }}" alt="" class="actes__icon" loading="lazy">
+        <h3>Brassage</h3>
+        <p>50 L à la fois, dans la cour. Empâtage à 65°C, houblonnage à cru, refroidissement contre-courant.</p>
+        <a href="{{ '/asso/' | relative_url }}" class="label-mono actes__link">En savoir plus →</a>
+      </div>
+      <div class="actes__card">
+        <img src="{{ '/assets/images/picto-glass.png' | relative_url }}" alt="" class="actes__icon" loading="lazy">
+        <h3>Dégustation</h3>
+        <p>Au stand le samedi. Bouteille consignée. On goûte, on note, on recommence.</p>
+        <a href="{{ '/asso/' | relative_url }}" class="label-mono actes__link">En savoir plus →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="nos-bieres" class="section-pad">
+  <div class="container-page">
+    {% include section-header.html overtitle="brassées ici, ou pas très loin" title="Nos bières" %}
+
+    <div class="bieres__grid">
+      {% for biere in site.data.accueil_bieres %}
+        <div class="stencil-card bieres__card">
+          <div class="bieres__card-header bieres__card-header--{{ biere.bg }}" style="color: var(--color-{{ biere.fg }});">
+            <h3>{{ biere.name }}</h3>
+            <span class="label-mono bieres__badge">{{ biere.badge }}</span>
+          </div>
+          <dl class="bieres__specs">
+            <div><dt class="label-mono">Style</dt><dd>—</dd></div>
+            <div><dt class="label-mono">ABV</dt><dd>—</dd></div>
+            <div><dt class="label-mono">IBU</dt><dd>—</dd></div>
+          </dl>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="trouver section-pad">
+  <div class="container-page">
+    {% include section-header.html overtitle="sur le comptoir du coin" title="Où la trouver ?" %}
+    <p>Nos bières circulent surtout de main en main, mais on en dépose aussi chez quelques complices du quartier.</p>
+
+    <div class="trouver__grid">
+      <ul class="trouver__list">
+        {% assign active_locations = site.data.baserow_locations | where: "active", true %}
+        {% for location in active_locations %}
+          <li class="stencil-card stencil-hover trouver__item">
+            {% include picto.html type="hop" class="picto--sm" %}
+            <div>
+              <p class="trouver__item-name">{{ location.name }}</p>
+              <p class="label-mono">Point de vente · [ADRESSE À CONFIRMER]</p>
+            </div>
+            <a href="mailto:{{ site.email }}" aria-label="Nous signaler un point de vente : {{ location.name }}" class="label-mono">à compléter</a>
+          </li>
+        {% else %}
+          <li class="stencil-card stencil-hover trouver__item">
+            {% include picto.html type="hop" class="picto--sm" %}
+            <div>
+              <p class="trouver__item-name">[NOM DU BAR — À COMPLÉTER]</p>
+              <p class="label-mono">Bar de quartier · [ADRESSE]</p>
+            </div>
+            <a href="mailto:{{ site.email }}" aria-label="Nous signaler un point de vente" class="label-mono">à compléter</a>
+          </li>
+        {% endfor %}
+      </ul>
+
+      <div class="stencil-card trouver__aside">
+        <h3>Vous tenez un bar aux Bois Blancs ?</h3>
+        <p>Écrivez-nous, on passe avec un fût.</p>
+        {% capture mailto_pdv %}mailto:{{ site.email }}?subject=Point%20de%20vente{% endcapture %}
+        {% include stencil-button.html href=mailto_pdv variant="ochre" label="Nous écrire" %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services section-pad">
+  <div class="container-page">
+    {% include section-header.html overtitle="on se déplace volontiers" title="Ce qu'on peut faire pour vous" %}
+
+    <div class="services__grid">
+      <div class="stencil-card services__card services__card--green">
+        <h3>Location de fût</h3>
+        <p>Un fût, une tireuse, et votre soirée est réglée.</p>
+        <a href="mailto:{{ site.email }}?subject=Devis%20-%20Location%20de%20f%C3%BBt" class="label-mono">Demander un devis</a>
+      </div>
+      <div class="stencil-card services__card services__card--brick">
+        <h3>On tient le bar</h3>
+        <p>Fête de quartier, mariage, vernissage : on vient avec le comptoir.</p>
+        <a href="mailto:{{ site.email }}?subject=Devis%20-%20On%20tient%20le%20bar" class="label-mono">Demander un devis</a>
+      </div>
+      <div class="stencil-card services__card services__card--ochre">
+        <h3>Atelier brassage</h3>
+        <p>On brasse avec vous, du grain à la bouteille.</p>
+        <a href="mailto:{{ site.email }}?subject=Devis%20-%20Atelier%20brassage" class="label-mono">Demander un devis</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="brassins section-pad">
+  <div class="container-page">
+    {% include section-header.html overtitle="la cuve tourne" title="Nos prochains brassins" %}
+
+    <ol class="brassins__list">
+      {% for b in site.data.accueil_brassins %}
+        <li class="brassins__item">
+          <span class="brassins__dot" aria-hidden="true">{% include picto.html type="hop" class="picto--sm" %}</span>
+          <div class="stencil-card brassins__card">
+            <p class="label-mono">{{ b.date }}</p>
+            <h3>{{ b.name }}</h3>
+            <p class="label-mono">{{ b.style }}</p>
+            <p class="label-mono">{{ b.lieu }}</p>
+            <span class="label-mono brassins__etat" style="background-color: var(--color-{{ b.etat_bg }}); color: var(--color-{{ b.etat_fg }});">{{ b.etat }}</span>
+          </div>
+        </li>
+      {% endfor %}
+    </ol>
+  </div>
+</section>
+
+<section class="rdv section-pad">
+  <div class="container-page">
+    {% include section-header.html overtitle="on vous attend" title="Prochains rendez-vous" invert=true %}
+
+    <div class="stencil-card rdv__card">
+      <p class="rdv__date">[DATE À CONFIRMER]</p>
+      <h3>La récolte</h3>
+      <p>On cueille le houblon du quartier, à la main, et on finit autour d'un verre.</p>
+      {% capture mailto_recolte %}mailto:{{ site.email }}?subject=Je%20viens%20%C3%A0%20la%20r%C3%A9colte{% endcapture %}
+      {% include stencil-button.html href=mailto_recolte variant="ochre" label="Je viens donner un coup de main" %}
+    </div>
+
+    <p class="hand rdv__note">D'autres dates arrivent — suivez-nous sur Instagram.</p>
+  </div>
+</section>

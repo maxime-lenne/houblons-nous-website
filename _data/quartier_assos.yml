@@ -1,0 +1,30 @@
+- theme: "Culture"
+  color: green
+  name: "[NOM DE L'ASSO]"
+  desc: "Deux lignes de description. [À COMPLÉTER] — l'activité de l'asso dans le quartier."
+  url: "[URL]"
+- theme: "Jardinage"
+  color: brick
+  name: "[NOM DE L'ASSO]"
+  desc: "Deux lignes de description. [À COMPLÉTER] — l'activité de l'asso dans le quartier."
+  url: "[URL]"
+- theme: "Sport"
+  color: ochre
+  name: "[NOM DE L'ASSO]"
+  desc: "Deux lignes de description. [À COMPLÉTER] — l'activité de l'asso dans le quartier."
+  url: "[URL]"
+- theme: "Solidarité"
+  color: river
+  name: "[NOM DE L'ASSO]"
+  desc: "Deux lignes de description. [À COMPLÉTER] — l'activité de l'asso dans le quartier."
+  url: "[URL]"
+- theme: "Culture"
+  color: green
+  name: "[NOM DE L'ASSO]"
+  desc: "Deux lignes de description. [À COMPLÉTER] — l'activité de l'asso dans le quartier."
+  url: "[URL]"
+- theme: "Environnement"
+  color: brick
+  name: "[NOM DE L'ASSO]"
+  desc: "Deux lignes de description. [À COMPLÉTER] — l'activité de l'asso dans le quartier."
+  url: "[URL]"

@@ -1,0 +1,24 @@
+- initials: "AB"
+  color: green
+  role: "Administrateur·rice"
+- initials: "CD"
+  color: brick
+  role: "Administrateur·rice"
+- initials: "EF"
+  color: ochre
+  role: "Administrateur·rice"
+- initials: "GH"
+  color: river
+  role: "Référent·e houblonnière"
+- initials: "IJ"
+  color: green
+  role: "Référent·e matériel"
+- initials: "KL"
+  color: brick
+  role: "Référent·e brassins"
+- initials: "MN"
+  color: ochre
+  role: "Référent·e événements"
+- initials: "OP"
+  color: river
+  role: "Référent·e communication"

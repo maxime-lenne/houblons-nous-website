@@ -1,74 +1,352 @@
-// "Coming soon" landing page — see _layouts/home.html
+// Accueil ("/") — see index.html
 
 @use "tokens";
 
+// ---------------------------------------------------------------------------
+// Hero
+// ---------------------------------------------------------------------------
+
 .hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: var(--color-cream);
-}
-
-.hero__banner {
   position: relative;
-  width: 100%;
+  border-bottom: 2px solid var(--color-ink);
   overflow: hidden;
-
-  img {
-    width: 100%;
-    height: clamp(160px, 32vw, 360px);
-    object-fit: cover;
-    object-position: center 65%;
-  }
 }
 
-.hero__place {
+.hero__bg {
   position: absolute;
-  right: var(--space-md);
-  bottom: var(--space-md);
-  margin: 0;
-  padding: var(--space-xs) var(--space-sm);
-  background-color: var(--color-cream);
-  color: var(--color-ink);
-  font-size: var(--text-lg);
-}
-
-.hero__panel {
+  inset: 0;
   width: 100%;
-  max-width: 40rem;
-  margin: 0 auto;
-  padding: var(--space-xl) var(--container-padding);
-  text-align: center;
+  height: 100%;
+  object-fit: cover;
+  margin: 0;
 }
 
-.hero__logo {
-  width: clamp(220px, 45vw, 360px);
-  height: auto;
-  margin: 0 auto var(--space-lg);
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgb(26 26 26 / 25%); // ink/25
 }
 
-.hero__title {
-  font-family: var(--font-script);
-  font-weight: 600;
-  font-size: clamp(2.25rem, 3vw + 1.5rem, 3.5rem);
-  color: var(--color-green-deep);
+.hero__content {
+  position: relative;
+  padding-block: 4rem;
+}
+
+.hero__card {
+  max-width: 34rem;
+  background-color: var(--color-cream);
+  padding: var(--space-lg);
+}
+
+.hero__label {
+  color: var(--color-green);
+  margin: 0 0 var(--space-sm);
 }
 
 .hero__lede {
-  max-width: 34rem;
-  margin: 0 auto;
-  color: var(--color-text-secondary);
-  font-size: var(--text-lg);
+  margin-top: var(--space-sm);
+}
 
-  p:last-child {
-    margin-bottom: 0;
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}
+
+.hero__strip {
+  position: relative;
+  text-align: center;
+  margin: 0;
+  padding: var(--space-sm);
+  background-color: var(--color-ochre);
+  color: var(--color-ink);
+}
+
+// ---------------------------------------------------------------------------
+// Trois actes
+// ---------------------------------------------------------------------------
+
+.actes__grid {
+  display: grid;
+  gap: var(--space-lg);
+  margin-top: var(--space-xl);
+
+  @media (min-width: tokens.$breakpoint-md) {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
-.hero__pictos {
-  width: clamp(220px, 55vw, 360px);
-  height: auto;
-  margin: var(--space-xl) auto 0;
-  opacity: 0.9;
+.actes__card {
+  border: 1px solid var(--color-ink);
+  padding: var(--space-lg);
+  background-color: var(--color-cream);
+}
+
+.actes__icon {
+  height: 4.5rem;
+  width: auto;
+  margin-bottom: var(--space-md);
+}
+
+.actes__link {
+  display: inline-block;
+  margin-top: var(--space-sm);
+  color: var(--color-brick);
+  text-decoration: underline;
+}
+
+// ---------------------------------------------------------------------------
+// Nos bières
+// ---------------------------------------------------------------------------
+
+.bieres__grid {
+  display: grid;
+  gap: var(--space-lg);
+  margin-top: var(--space-xl);
+
+  @media (min-width: tokens.$breakpoint-md) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.bieres__card {
+  background-color: var(--color-cream);
+  overflow: hidden;
+}
+
+.bieres__card-header {
+  padding: var(--space-lg) var(--space-md);
+
+  h3 {
+    margin: 0 0 var(--space-sm);
+  }
+
+  &--ochre {
+    background-color: var(--color-ochre);
+  }
+
+  &--brick {
+    background-color: var(--color-brick);
+  }
+
+  &--green {
+    background-color: var(--color-green);
+  }
+}
+
+.bieres__badge {
+  display: inline-block;
+  border: 1px solid currentColor;
+  padding: 0.125rem var(--space-sm);
+}
+
+.bieres__specs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-sm);
+  margin: 0;
+  padding: var(--space-md);
+  text-align: center;
+
+  dt {
+    color: var(--color-text-secondary);
+  }
+
+  dd {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Où la trouver ?
+// ---------------------------------------------------------------------------
+
+.trouver {
+  background-color: var(--color-paper-warm);
+  border-block: 2px solid var(--color-ink);
+}
+
+.trouver__grid {
+  display: grid;
+  gap: var(--space-lg);
+  margin-top: var(--space-xl);
+
+  @media (min-width: tokens.$breakpoint-lg) {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+.trouver__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.trouver__item {
+  background-color: var(--color-cream);
+  padding: var(--space-md);
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+
+  > div {
+    flex: 1;
+  }
+}
+
+.trouver__item-name {
+  font-family: var(--font-display);
+  margin: 0;
+}
+
+.trouver__aside {
+  background-color: var(--color-river);
+  color: var(--color-cream);
+  padding: var(--space-lg);
+
+  h3 {
+    color: var(--color-cream);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Services
+// ---------------------------------------------------------------------------
+
+.services__grid {
+  display: grid;
+  gap: var(--space-lg);
+  margin-top: var(--space-xl);
+
+  @media (min-width: tokens.$breakpoint-md) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.services__card {
+  padding: var(--space-lg);
+
+  h3,
+  a {
+    color: inherit;
+  }
+
+  a {
+    display: inline-block;
+    margin-top: var(--space-sm);
+    text-decoration: underline;
+  }
+
+  &--green {
+    background-color: var(--color-green);
+    color: var(--color-cream);
+  }
+
+  &--brick {
+    background-color: var(--color-brick);
+    color: var(--color-cream);
+  }
+
+  &--ochre {
+    background-color: var(--color-ochre);
+    color: var(--color-ink);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Brassins
+// ---------------------------------------------------------------------------
+
+.brassins {
+  background-color: var(--color-paper-warm);
+  border-top: 2px solid var(--color-ink);
+}
+
+.brassins__list {
+  list-style: none;
+  margin: var(--space-xl) 0 0;
+  padding: 0 0 0 var(--space-lg);
+  border-left: 2px dashed var(--color-green);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+
+  @media (min-width: tokens.$breakpoint-md) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    border-left: none;
+    padding-left: 0;
+    gap: var(--space-lg) var(--space-xl);
+  }
+}
+
+.brassins__item {
+  position: relative;
+}
+
+.brassins__dot {
+  position: absolute;
+  left: -1.65rem;
+  top: 0.35rem;
+  color: var(--color-green);
+
+  @media (min-width: tokens.$breakpoint-md) {
+    display: none;
+  }
+}
+
+.brassins__card {
+  background-color: var(--color-cream);
+  padding: var(--space-md);
+}
+
+.brassins__etat {
+  display: inline-block;
+  margin-top: var(--space-sm);
+  padding: 0.125rem var(--space-sm);
+}
+
+// ---------------------------------------------------------------------------
+// Prochains rendez-vous
+// ---------------------------------------------------------------------------
+
+.rdv {
+  background-color: var(--color-green-deep);
+  border-top: 2px solid var(--color-ink);
+  color: var(--color-cream);
+}
+
+.rdv__card {
+  margin-top: var(--space-xl);
+  background-color: transparent;
+  border: 2px solid var(--color-cream);
+  box-shadow: 6px 6px 0 var(--color-ochre-deep);
+  padding: var(--space-xl);
+  max-width: 36rem;
+
+  h3 {
+    color: var(--color-cream);
+  }
+
+  p {
+    color: var(--color-mist);
+  }
+}
+
+.rdv__date {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: var(--color-ochre);
+  margin: 0 0 var(--space-sm);
+}
+
+.rdv__note {
+  margin-top: var(--space-lg);
+  color: var(--color-green-soft);
 }
