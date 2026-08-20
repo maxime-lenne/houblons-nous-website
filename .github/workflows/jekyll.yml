@@ -54,6 +54,7 @@ jobs:
           JEKYLL_ENV: production
           BASEROW_TOKEN: ${{ secrets.BASEROW_TOKEN }}
           BASEROW_LOCATIONS_TABLE: ${{ secrets.BASEROW_LOCATIONS_TABLE }}
+          BASEROW_API_URL: ${{ secrets.BASEROW_API_URL }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
