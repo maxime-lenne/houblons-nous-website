@@ -29,7 +29,7 @@ permalink: /
   <p class="label-mono hero__strip">▸ Prochain rendez-vous : la récolte — [DATE À CONFIRMER]</p>
 </section>
 
-<section id="actes" class="section-pad">
+<section id="actes" class="actes section-pad">
   <div class="container-page">
     {% include section-header.html overtitle="notre boucle courte" title="Trois actes, une asso" %}
 
@@ -56,7 +56,26 @@ permalink: /
   </div>
 </section>
 
-<section id="nos-bieres" class="section-pad">
+<section id="adhesion-promo" class="grain adhesion-promo section-pad">
+  <div class="container-page adhesion-promo__grid">
+    <div>
+      {% include section-header.html overtitle="pourquoi nous rejoindre" title="Adhérez à l'asso" %}
+      <p>Devenir adhérent, c'est rejoindre une communauté de brasseurs et d'amateurs — avec quelques avantages concrets.</p>
+      {% capture mailto_adherer_promo %}mailto:{{ site.email }}?subject=Je%20veux%20adh%C3%A9rer{% endcapture %}
+      {% include stencil-button.html href=mailto_adherer_promo variant="ink" label="Je veux adhérer" %}
+    </div>
+
+    <ul class="stencil-card adhesion-promo__list">
+      <li>{% include picto.html type="hop" class="picto--sm" %}<span>Communauté d'amateurs de bières sur WhatsApp</span></li>
+      <li>{% include picto.html type="hop" class="picto--sm" %}<span>Accès à la distribution de rejets de houblon</span></li>
+      <li>{% include picto.html type="hop" class="picto--sm" %}<span>Une bière de bienvenue</span></li>
+      <li>{% include picto.html type="hop" class="picto--sm" %}<span>Accès aux brassins</span></li>
+      <li>{% include picto.html type="hop" class="picto--sm" %}<span>Accès à tous nos événements et au catalogue de bières</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="nos-bieres" class="bieres section-pad">
   <div class="container-page">
     {% include section-header.html overtitle="brassées ici, ou pas très loin" title="Nos bières" %}
 
@@ -72,6 +91,11 @@ permalink: /
             <div><dt class="label-mono">ABV</dt><dd>—</dd></div>
             <div><dt class="label-mono">IBU</dt><dd>—</dd></div>
           </dl>
+          <div class="bieres__stock">
+            <p class="label-mono">{{ biere.conditionnement }}</p>
+            {% if biere.litres_restants %}<p class="label-mono">{{ biere.litres_restants }} L restants</p>{% endif %}
+          </div>
+          <a href="mailto:{{ site.email }}?subject={{ biere.cta_subject | url_encode }}" class="label-mono bieres__cta">{{ biere.cta_label }}</a>
         </div>
       {% endfor %}
     </div>
@@ -117,6 +141,32 @@ permalink: /
   </div>
 </section>
 
+<section id="brassins" class="brassins section-pad">
+  <div class="container-page">
+    {% include section-header.html overtitle="la cuve tourne" title="Nos prochains rendez-vous" %}
+
+    <ol class="brassins__list">
+      {% for b in site.data.accueil_brassins %}
+        <li class="brassins__item">
+          <span class="brassins__dot" aria-hidden="true">{% include picto.html type="hop" class="picto--sm" %}</span>
+          <div class="stencil-card brassins__card">
+            <span class="label-mono brassins__type brassins__type--{{ b.type_color }}">{{ b.type }}</span>
+            <p class="label-mono brassins__date">{{ b.date }}</p>
+            <h3>{{ b.name }}</h3>
+            {% if b.style %}<p class="label-mono">{{ b.style }}</p>{% endif %}
+            {% if b.lieu %}<p class="label-mono">{{ b.lieu }}</p>{% endif %}
+            {% if b.text %}<p>{{ b.text }}</p>{% endif %}
+            {% if b.etat %}<span class="label-mono brassins__etat" style="background-color: var(--color-{{ b.etat_bg }}); color: var(--color-{{ b.etat_fg }});">{{ b.etat }}</span>{% endif %}
+            {% if b.cta_label %}<a href="mailto:{{ site.email }}?subject={{ b.cta_subject | url_encode }}" class="label-mono brassins__cta">{{ b.cta_label }}</a>{% endif %}
+          </div>
+        </li>
+      {% endfor %}
+    </ol>
+
+    <p class="hand brassins__note">D'autres dates arrivent — suivez-nous sur Instagram.</p>
+  </div>
+</section>
+
 <section class="services section-pad">
   <div class="container-page">
     {% include section-header.html overtitle="on se déplace volontiers" title="Ce qu'on peut faire pour vous" %}
@@ -138,42 +188,5 @@ permalink: /
         <a href="mailto:{{ site.email }}?subject=Devis%20-%20Atelier%20brassage" class="label-mono">Demander un devis</a>
       </div>
     </div>
-  </div>
-</section>
-
-<section class="brassins section-pad">
-  <div class="container-page">
-    {% include section-header.html overtitle="la cuve tourne" title="Nos prochains brassins" %}
-
-    <ol class="brassins__list">
-      {% for b in site.data.accueil_brassins %}
-        <li class="brassins__item">
-          <span class="brassins__dot" aria-hidden="true">{% include picto.html type="hop" class="picto--sm" %}</span>
-          <div class="stencil-card brassins__card">
-            <p class="label-mono">{{ b.date }}</p>
-            <h3>{{ b.name }}</h3>
-            <p class="label-mono">{{ b.style }}</p>
-            <p class="label-mono">{{ b.lieu }}</p>
-            <span class="label-mono brassins__etat" style="background-color: var(--color-{{ b.etat_bg }}); color: var(--color-{{ b.etat_fg }});">{{ b.etat }}</span>
-          </div>
-        </li>
-      {% endfor %}
-    </ol>
-  </div>
-</section>
-
-<section class="rdv section-pad">
-  <div class="container-page">
-    {% include section-header.html overtitle="on vous attend" title="Prochains rendez-vous" invert=true %}
-
-    <div class="stencil-card rdv__card">
-      <p class="rdv__date">[DATE À CONFIRMER]</p>
-      <h3>La récolte</h3>
-      <p>On cueille le houblon du quartier, à la main, et on finit autour d'un verre.</p>
-      {% capture mailto_recolte %}mailto:{{ site.email }}?subject=Je%20viens%20%C3%A0%20la%20r%C3%A9colte{% endcapture %}
-      {% include stencil-button.html href=mailto_recolte variant="ochre" label="Je viens donner un coup de main" %}
-    </div>
-
-    <p class="hand rdv__note">D'autres dates arrivent — suivez-nous sur Instagram.</p>
   </div>
 </section>

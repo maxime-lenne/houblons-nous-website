@@ -106,6 +106,17 @@ permalink: /asso/
   </div>
 </section>
 
+<section class="benevoles section-pad">
+  <div class="container-page">
+    {% include section-header.html overtitle="ils donnent un coup de main" title="Les bénévoles" %}
+    <p class="benevoles__list">[PRÉNOM], [PRÉNOM], [PRÉNOM], [PRÉNOM], [PRÉNOM], [PRÉNOM], [PRÉNOM], [PRÉNOM]</p>
+    <p>Merci à elles et eux : sans les bénévoles, pas de récolte, pas de brassin, pas de stand le samedi.</p>
+    <p>Envie de filer un coup de main ? Écrivez-nous, il y a toujours de la place autour de la cuve.</p>
+    {% capture mailto_benevole %}mailto:{{ site.email }}?subject=Je%20veux%20aider%20comme%20b%C3%A9n%C3%A9vole{% endcapture %}
+    {% include stencil-button.html href=mailto_benevole variant="green" label="Devenir bénévole" %}
+  </div>
+</section>
+
 <section class="grain belnaert section-pad">
   <div class="container-page belnaert__grid">
     <div>

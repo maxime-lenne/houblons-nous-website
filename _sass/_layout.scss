@@ -199,7 +199,11 @@
   grid-template-columns: 1fr;
 
   @media (min-width: tokens.$breakpoint-md) {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: tokens.$breakpoint-lg) {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
@@ -237,6 +241,29 @@
     &:focus-visible {
       color: var(--color-cream);
     }
+  }
+}
+
+.site-footer__cta {
+  background-color: var(--color-brick);
+  padding: var(--space-lg);
+
+  .site-footer__heading {
+    color: var(--color-cream);
+  }
+
+  p {
+    margin: var(--space-sm) 0 0;
+    color: var(--color-mist);
+  }
+
+  a {
+    display: inline-block;
+    margin-top: var(--space-md);
+    background-color: var(--color-cream);
+    color: var(--color-ink);
+    padding: var(--space-sm) var(--space-md);
+    text-decoration: none;
   }
 }
 

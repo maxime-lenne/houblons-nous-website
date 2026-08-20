@@ -306,6 +306,22 @@
 }
 
 // ---------------------------------------------------------------------------
+// Bénévoles
+// ---------------------------------------------------------------------------
+
+.benevoles {
+  background-color: var(--color-paper-warm);
+  border-block: 2px solid var(--color-ink);
+}
+
+.benevoles__list {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  line-height: 1.5;
+  margin: var(--space-lg) 0;
+}
+
+// ---------------------------------------------------------------------------
 // Partenariat Belnaert
 // ---------------------------------------------------------------------------
 

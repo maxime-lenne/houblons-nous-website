@@ -1,5 +1,7 @@
 - date: "[DATE À CONFIRMER]"
   name: "[NOM DU BRASSIN]"
+  type: "Brassin"
+  type_color: green
   style: "Style : [À CONFIRMER]"
   lieu: "Lieu : [À CONFIRMER]"
   etat: "Complet"
@@ -7,6 +9,8 @@
   etat_fg: cream
 - date: "[DATE À CONFIRMER]"
   name: "[NOM DU BRASSIN]"
+  type: "Brassin"
+  type_color: green
   style: "Style : [À CONFIRMER]"
   lieu: "Lieu : [À CONFIRMER]"
   etat: "Places dispo"
@@ -14,8 +18,17 @@
   etat_fg: cream
 - date: "[DATE À CONFIRMER]"
   name: "[NOM DU BRASSIN]"
+  type: "Brassin"
+  type_color: green
   style: "Style : [À CONFIRMER]"
   lieu: "Lieu : [À CONFIRMER]"
   etat: "À venir"
   etat_bg: concrete
   etat_fg: ink
+- date: "[DATE À CONFIRMER]"
+  name: "La récolte"
+  type: "Récolte"
+  type_color: ochre
+  text: "On cueille le houblon du quartier, à la main, et on finit autour d'un verre."
+  cta_label: "Je viens donner un coup de main"
+  cta_subject: "Je viens à la récolte"

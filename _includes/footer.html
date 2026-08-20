@@ -12,7 +12,7 @@
       <p>On se retrouve tous les samedis matins à la cour. Sécateurs et bonne humeur fournis.</p>
     </div>
 
-    <div id="nous-soutenir">
+    <div>
       <h2 class="site-footer__heading">Suivre</h2>
       <ul class="site-footer__links-list">
         {%- assign fb = "" -%}
@@ -25,6 +25,13 @@
         {%- if ig != "" -%}<li><a href="{{ ig }}" target="_blank" rel="me noopener">Instagram »</a></li>{%- endif -%}
         <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
       </ul>
+    </div>
+
+    <div id="nous-soutenir" class="stencil-card site-footer__cta">
+      <h2 class="site-footer__heading">Rejoindre l'asso</h2>
+      <p>Brasseur confirmé ou curieux du quartier : il y a de la place autour de la cuve.</p>
+      {% capture mailto_adherer_footer %}mailto:{{ site.email }}?subject=Je%20veux%20adh%C3%A9rer{% endcapture %}
+      <a href="{{ mailto_adherer_footer }}" class="label-mono">J'adhère</a>
     </div>
   </div>
 

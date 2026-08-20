@@ -195,3 +195,21 @@ button.stencil-button {
     transform: none !important;
   }
 }
+
+// Holding page for nav entries whose real content isn't written yet.
+.coming-soon {
+  text-align: center;
+  max-width: 36rem;
+  margin-inline: auto;
+}
+
+.coming-soon__over {
+  color: var(--color-green);
+}
+
+.coming-soon__link {
+  display: inline-block;
+  margin-top: var(--space-lg);
+  color: var(--color-brick);
+  text-decoration: underline;
+}
