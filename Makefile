@@ -30,10 +30,10 @@ endif
 	bun install
 
 build: ## Build the site in development mode
-	$(ENV_VARS) $(BUNDLE) exec jekyll build
+	@$(ENV_VARS) $(BUNDLE) exec jekyll build
 
 serve: ## Start the dev server with live reload on http://localhost:4001
-	$(ENV_VARS) $(BUNDLE) exec jekyll serve --config _config.yml,_config.dev.yml
+	@$(ENV_VARS) $(BUNDLE) exec jekyll serve --config _config.yml,_config.dev.yml
 
 clean: ## Remove all generated files
 	$(BUNDLE) exec jekyll clean
@@ -52,4 +52,4 @@ lint: ## Run project linters (see also `bun run lint`)
 	bun run lint
 
 baserow-sync: ## Rebuild the site, pulling fresh content from Baserow
-	$(ENV_VARS) $(BUNDLE) exec jekyll build --config _config.yml,_config_prod.yml
+	@$(ENV_VARS) $(BUNDLE) exec jekyll build --config _config.yml,_config_prod.yml
