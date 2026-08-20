@@ -75,6 +75,7 @@ baserow:
         - { name: Active, type: boolean }
 # Exclude from processing
 exclude:
+  - _compress_images_cache.yml
   - Gemfile
   - Gemfile.lock
   - package.json

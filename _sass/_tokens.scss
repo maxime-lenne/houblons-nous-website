@@ -36,35 +36,32 @@ $breakpoint-xl: 1280px;
 
   // Accent — green (hops)
   --color-green: #2f7a3a;
-  --color-green-soft: #b4cc9a;
-  --color-green-spray: #7fa464;
-  --color-green-base: #3d6c38;
-  --color-green-deep: #284425;
+  --color-green-soft: #c3ddaf;
+  --color-green-spray: #6fa85c;
+  --color-green-deep: #1f4d26;
 
   // Accent — brick (terracotta)
-  --color-brick: #b23a2c;
-  --color-brick-soft: #ddb19e;
-  --color-brick-base: #9a3d2c;
-  --color-brick-deep: #65271b;
+  --color-brick: #b03a20;
+  --color-brick-soft: #e8b5a6;
+  --color-brick-deep: #6e2214;
 
   // Accent — ochre (amber / beer)
   --color-ochre: #d9a227;
-  --color-ochre-soft: #ecd798;
-  --color-ochre-base: #cb9a37;
-  --color-ochre-deep: #89631f;
+  --color-ochre-soft: #f0dc96;
+  --color-ochre-deep: #8a6a17;
 
   // Semantic
-  --color-success: var(--color-green-base);
-  --color-warning: var(--color-ochre-base);
-  --color-error: var(--color-brick-base);
+  --color-success: var(--color-green);
+  --color-warning: var(--color-ochre);
+  --color-error: var(--color-brick);
   --color-info: var(--color-river);
 
   // Theme
-  --color-background: var(--color-cream);
-  --color-surface: var(--color-paper);
+  --color-background: var(--color-paper);
+  --color-surface: var(--color-cream);
   --color-text-primary: var(--color-ink);
   --color-text-secondary: var(--color-ink-soft);
-  --color-border: var(--color-mist);
+  --color-border: var(--color-ink);
 
   // Spacing
   --space-xs: 0.25rem;
@@ -75,19 +72,11 @@ $breakpoint-xl: 1280px;
   --space-2xl: 6rem;
 
   // Layout
-  --container-max-width: 1280px;
-  --container-padding: clamp(1rem, 5vw, 3rem);
+  --container-max-width: 1200px;
+  --container-padding: 1.25rem;
 
   // Motion
   --transition-fast: 150ms ease-in-out;
   --transition-normal: 250ms ease-in-out;
   --transition-slow: 350ms ease-in-out;
-}
-
-:root[data-theme="dark"] {
-  --color-background: var(--color-ink);
-  --color-surface: var(--color-ink-soft);
-  --color-text-primary: var(--color-cream);
-  --color-text-secondary: var(--color-mist);
-  --color-border: var(--color-bark);
 }

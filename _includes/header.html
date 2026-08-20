@@ -1,3 +1,41 @@
 <header class="site-header">
-  <a class="site-header__title" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+  <div class="container-page site-header__inner">
+    <a class="site-header__logo" href="{{ '/' | relative_url }}" aria-label="{{ site.title }}, accueil">
+      <img src="{{ '/assets/images/logo-horizontal.png' | relative_url }}" alt="{{ site.title }}">
+    </a>
+
+    <nav aria-label="Navigation principale" class="site-header__nav">
+      <a href="{{ '/' | relative_url }}" class="site-header__nav-link"{% if page.url == '/' %} aria-current="page"{% endif %}>Accueil</a>
+      <a href="{{ '/asso/' | relative_url }}" class="site-header__nav-link"{% if page.url == '/asso/' %} aria-current="page"{% endif %}>L'asso</a>
+      <a href="{{ '/quartier/' | relative_url }}" class="site-header__nav-link"{% if page.url == '/quartier/' %} aria-current="page"{% endif %}>Le quartier</a>
+      <a href="{{ '/' | relative_url }}#nos-bieres" class="site-header__nav-link">Nos bières</a>
+      <a href="{{ '/' | relative_url }}#nous-soutenir" class="site-header__nav-link">Nous soutenir</a>
+      <a href="mailto:{{ site.email }}" class="stencil-card stencil-hover label-mono site-header__cta">Nous écrire</a>
+    </nav>
+
+    <button type="button" class="stencil-card site-header__burger" data-menu-open aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <line x1="3" y1="6" x2="21" y2="6" />
+        <line x1="3" y1="12" x2="21" y2="12" />
+        <line x1="3" y1="18" x2="21" y2="18" />
+      </svg>
+    </button>
+  </div>
+
+  <div class="site-header__mobile" id="mobile-menu" data-menu-panel>
+    <button type="button" class="site-header__mobile-close" data-menu-close aria-label="Fermer le menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <line x1="4" y1="4" x2="20" y2="20" />
+        <line x1="20" y1="4" x2="4" y2="20" />
+      </svg>
+    </button>
+    <nav aria-label="Navigation mobile" class="site-header__mobile-nav">
+      <a href="{{ '/' | relative_url }}" class="site-header__mobile-link">Accueil</a>
+      <a href="{{ '/asso/' | relative_url }}" class="site-header__mobile-link">L'asso</a>
+      <a href="{{ '/quartier/' | relative_url }}" class="site-header__mobile-link">Le quartier</a>
+      <a href="{{ '/' | relative_url }}#nos-bieres" class="site-header__mobile-link">Nos bières</a>
+      <a href="{{ '/' | relative_url }}#nous-soutenir" class="site-header__mobile-link">Nous soutenir</a>
+      <a href="mailto:{{ site.email }}" class="stencil-card label-mono site-header__mobile-cta">Nous écrire</a>
+    </nav>
+  </div>
 </header>

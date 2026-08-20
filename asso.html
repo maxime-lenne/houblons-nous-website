@@ -1,0 +1,131 @@
+---
+layout: default
+title: "L'asso — Houblons-Nous, brasseurs amateurs à Lille"
+description: "Une bande de brasseurs amateurs des Bois Blancs qui préfère faire de la bière ensemble plutôt que chacun dans son coin."
+permalink: /asso/
+---
+
+<section class="asso-hero">
+  <img
+    class="asso-hero__bg"
+    src="{{ '/assets/images/illu-brassage.png' | relative_url }}"
+    alt="Linogravure : cuves de brassage, verre de bière et poisson-houblon au bord de l'eau"
+    fetchpriority="high">
+  <div class="hero__overlay" aria-hidden="true"></div>
+
+  <div class="container-page asso-hero__content">
+    <div class="stencil-card hero__card">
+      <p class="label-mono hero__label">qui on est</p>
+      <h1>L'asso</h1>
+      <p class="hero__lede">Une bande de brasseurs amateurs des Bois Blancs qui préfère faire de la bière ensemble plutôt que chacun dans son coin.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad">
+  <div class="container-page apropos__grid">
+    <div>
+      {% include section-header.html overtitle="en deux mots" title="À propos" %}
+      <p>Houblons-Nous est une association de brasseurs amateurs installée aux Bois Blancs, à Lille. On cultive du houblon dans le quartier, on brasse, et on partage le résultat — bon ou perfectible — avec ceux qui passent par là.</p>
+      <p>L'asso est née d'une envie simple : arrêter de brasser chacun dans sa cuisine. Mettre en commun le matériel, les recettes, les erreurs et les réussites, et faire de chaque brassin un prétexte pour se retrouver.</p>
+      <p>Tous les niveaux sont les bienvenus : du curieux qui n'a jamais soulevé une cuve au brasseur confirmé qui vient partager sa méthode. Il y a toujours quelque chose à touiller, à mettre en bouteille ou à goûter.</p>
+    </div>
+
+    <aside class="stencil-card apropos__stats">
+      <p class="label-mono apropos__stats-title">Chiffres clés</p>
+      <div class="apropos__stats-grid">
+        <div><span class="apropos__stat-value">[XX]</span><span class="label-mono">adhérents</span></div>
+        <div><span class="apropos__stat-value">[XX]</span><span class="label-mono">litres brassés</span></div>
+        <div><span class="apropos__stat-value">[XX]</span><span class="label-mono">brassins par an</span></div>
+        <div><span class="apropos__stat-value">[XXXX]</span><span class="label-mono">année de création</span></div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<section class="historique section-pad">
+  <div class="container-page">
+    {% include section-header.html overtitle="d'où on vient" title="Historique" %}
+    {% include timeline.html items=site.data.asso_historique %}
+  </div>
+</section>
+
+<section class="section-pad">
+  <div class="container-page local__grid">
+    <div class="grain stencil-card local__photo">
+      <span class="local__photo-label">photo du local à venir</span>
+    </div>
+
+    <div>
+      {% include section-header.html overtitle="notre point de chute" title="Notre local" %}
+      <address>[ADRESSE DU LOCAL À CONFIRMER] — Bois Blancs, 59000 Lille</address>
+      <p>C'est ici qu'on stocke le matériel, qu'on brasse, qu'on met en bouteille et qu'on se retrouve. Un local simple, un peu humide, qui sent le malt chaud les jours de brassin — et la porte est ouverte à qui veut donner un coup de main.</p>
+
+      <ul class="local__horaires">
+        <li><span class="label-mono">Mercredi</span><span class="label-mono">[18h — 21h]</span></li>
+        <li><span class="label-mono">Samedi</span><span class="label-mono">[10h — 13h]</span></li>
+        <li><span class="label-mono">Jours de brassin</span><span class="label-mono">[À CONFIRMER]</span></li>
+        <li><span class="label-mono">Dimanche &amp; lundi</span><span class="label-mono">Fermé</span></li>
+      </ul>
+
+      {% include stencil-button.html href="https://www.openstreetmap.org/" target="_blank" variant="green" label="Voir sur la carte" %}
+    </div>
+  </div>
+</section>
+
+<section class="ca section-pad">
+  <div class="container-page">
+    {% include section-header.html overtitle="celles et ceux qui tiennent la barre" title="Le CA" %}
+
+    <div class="ca__grid">
+      {% for m in site.data.asso_ca %}
+        <div class="stencil-card stencil-hover ca__card">
+          <span class="ca__badge ca__badge--{{ m.color }}">{{ m.initials }}</span>
+          <p class="ca__name">[PRÉNOM NOM]</p>
+          <p class="label-mono">{{ m.role }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section-pad">
+  <div class="container-page">
+    {% include section-header.html overtitle="l'équipe resserrée" title="Le bureau" %}
+
+    <div class="bureau__grid">
+      {% for m in site.data.asso_bureau %}
+        <div class="stencil-card bureau__card">
+          <span class="ca__badge ca__badge--green bureau__badge">PN</span>
+          <p class="ca__name">[PRÉNOM NOM]</p>
+          <p class="bureau__role">{{ m.role }}</p>
+          <p class="hand bureau__quote">{{ m.quote }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="grain belnaert section-pad">
+  <div class="container-page belnaert__grid">
+    <div>
+      <p class="hand belnaert__over">compagnonnage</p>
+      <h2>Brassé avec Belnaert</h2>
+      <p>Certaines de nos recettes dépassent la capacité de nos cuves. Pour celles-là, on pousse la porte de la brasserie Belnaert : on y brasse à plus grande échelle, sur du matériel professionnel, avec des brasseurs qui connaissent leur métier.</p>
+      <p>C'est un vrai compagnonnage entre amateurs et professionnels : on apporte nos recettes et nos bras, ils apportent l'expérience et l'outil. Chacun y apprend quelque chose, et le quartier y gagne quelques fûts.</p>
+      {% include stencil-button.html href="[URL]" variant="outline" label="Découvrir Belnaert" %}
+    </div>
+    <div class="belnaert__logo">logo partenaire<br>[À FOURNIR]</div>
+  </div>
+  {% include waves.html class="container-page" %}
+</section>
+
+<section class="grain adhesion section-pad">
+  <div class="container-page">
+    <p class="hand adhesion__over">rejoins la cuve</p>
+    <h2>Envie de nous rejoindre&nbsp;?</h2>
+    <p>La cotisation annuelle est de <strong>[XX] €</strong>. Elle donne accès aux brassins collectifs, au prêt du matériel de l'asso, aux dégustations et aux récoltes de houblon du quartier.</p>
+    {% capture mailto_adherer %}mailto:{{ site.email }}?subject=Je%20veux%20adh%C3%A9rer{% endcapture %}
+    {% include stencil-button.html href=mailto_adherer variant="ink" label="Je veux adhérer" %}
+  </div>
+</section>

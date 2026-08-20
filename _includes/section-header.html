@@ -1,0 +1,11 @@
+{%- comment -%}
+  Params: overtitle (required), title (required), id (optional heading id),
+  level ("h1" | "h2", default "h2"), invert (bool, for dark-background sections)
+{%- endcomment -%}
+{%- assign level = include.level | default: "h2" -%}
+<p class="hand section-header__over{% if include.invert %} section-header__over--invert{% endif %}">{{ include.overtitle }}</p>
+{%- if level == "h1" -%}
+  <h1{% if include.id %} id="{{ include.id }}"{% endif %} class="section-header__title{% if include.invert %} section-header__title--invert{% endif %}">{{ include.title }}</h1>
+{%- else -%}
+  <h2{% if include.id %} id="{{ include.id }}"{% endif %} class="section-header__title{% if include.invert %} section-header__title--invert{% endif %}">{{ include.title }}</h2>
+{%- endif -%}

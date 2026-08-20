@@ -1,0 +1,7 @@
+{%- comment -%}
+  Params: day (required), month (required), bg (color name, e.g. "green"), fg (color name, e.g. "cream")
+{%- endcomment -%}
+<div class="date-block date-block--bg-{{ include.bg }} date-block--fg-{{ include.fg }}">
+  <span class="date-block__day">{{ include.day }}</span>
+  <span class="date-block__month label-mono">{{ include.month }}</span>
+</div>

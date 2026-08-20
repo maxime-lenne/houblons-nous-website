@@ -1,0 +1,265 @@
+// Le quartier ("/quartier") — see quartier.html
+
+@use "tokens";
+
+// ---------------------------------------------------------------------------
+// Hero
+// ---------------------------------------------------------------------------
+
+.quartier-hero {
+  position: relative;
+  border-bottom: 2px solid var(--color-ink);
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  min-height: 60vh;
+}
+
+.quartier-hero__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin: 0;
+}
+
+.quartier-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgb(26 26 26 / 60%); // ink/60
+}
+
+.quartier-hero__content {
+  position: relative;
+  padding-block: var(--space-xl);
+  color: var(--color-cream);
+}
+
+.quartier-hero__over {
+  color: var(--color-cream);
+}
+
+.quartier-hero__title {
+  color: var(--color-cream);
+}
+
+.quartier-hero__lede {
+  max-width: 34rem;
+}
+
+// ---------------------------------------------------------------------------
+// Description + repères
+// ---------------------------------------------------------------------------
+
+.description__grid {
+  display: grid;
+  gap: var(--space-xl);
+
+  @media (min-width: tokens.$breakpoint-lg) {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+.reperes {
+  height: fit-content;
+  background-color: var(--color-river);
+  color: var(--color-cream);
+  padding: var(--space-lg);
+}
+
+.reperes__title {
+  margin: 0 0 var(--space-md);
+}
+
+.reperes__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+
+  li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+.reperes__item-title {
+  font-family: var(--font-display);
+  margin-bottom: var(--space-xs) !important;
+}
+
+// ---------------------------------------------------------------------------
+// Les assos de quartier
+// ---------------------------------------------------------------------------
+
+.assos {
+  background-color: var(--color-paper-warm);
+  border-block: 2px solid var(--color-ink);
+}
+
+.assos__grid {
+  display: grid;
+  gap: var(--space-lg);
+  margin-top: var(--space-xl);
+
+  @media (min-width: tokens.$breakpoint-md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: tokens.$breakpoint-lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.assos__card {
+  background-color: var(--color-cream);
+  padding: var(--space-lg);
+  border-top-width: 4px;
+
+  &--green {
+    border-top-color: var(--color-green);
+  }
+
+  &--brick {
+    border-top-color: var(--color-brick);
+  }
+
+  &--ochre {
+    border-top-color: var(--color-ochre);
+  }
+
+  &--river {
+    border-top-color: var(--color-river);
+  }
+
+  a {
+    display: inline-block;
+    margin-top: var(--space-sm);
+  }
+}
+
+.assos__theme {
+  color: var(--color-green);
+}
+
+// ---------------------------------------------------------------------------
+// Les événements
+// ---------------------------------------------------------------------------
+
+.evenements__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin: var(--space-xl) 0 var(--space-lg);
+}
+
+.evenements__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.evenements__item {
+  background-color: var(--color-cream);
+  padding: var(--space-md);
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  transition: transform var(--transition-fast), background-color var(--transition-fast);
+
+  &:hover {
+    transform: translateX(0.25rem);
+    background-color: var(--color-paper-warm);
+  }
+}
+
+.evenements__info {
+  flex: 1;
+  min-width: 0;
+}
+
+.evenements__title {
+  font-family: var(--font-display);
+  margin: 0;
+}
+
+.evenements__badge {
+  border: 1px solid var(--color-ink);
+  padding: 0.125rem var(--space-sm);
+}
+
+.evenements__arrow {
+  color: var(--color-green);
+}
+
+.evenements__empty {
+  margin-top: var(--space-lg);
+  color: var(--color-text-secondary);
+}
+
+// Date block — see _includes/date-block.html
+.date-block {
+  flex-shrink: 0;
+  width: 4rem;
+  height: 4rem;
+  border: 2px solid var(--color-ink);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  @each $name in ("green", "brick", "ochre", "river") {
+    &--bg-#{$name} {
+      background-color: var(--color-#{$name});
+    }
+  }
+
+  &--fg-cream {
+    color: var(--color-cream);
+  }
+
+  &--fg-ink {
+    color: var(--color-ink);
+  }
+}
+
+.date-block__day {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  line-height: 1;
+}
+
+// ---------------------------------------------------------------------------
+// Bloc final
+// ---------------------------------------------------------------------------
+
+.quartier-cta {
+  background-color: var(--color-green-deep);
+  border-top: 2px solid var(--color-ink);
+  color: var(--color-cream);
+  text-align: center;
+
+  h2 {
+    color: var(--color-cream);
+  }
+
+  p {
+    max-width: 34rem;
+    margin-inline: auto;
+  }
+}
+
+.quartier-cta__over {
+  color: var(--color-green-soft);
+}
