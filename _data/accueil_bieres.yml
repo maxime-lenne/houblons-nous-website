@@ -2,11 +2,21 @@
   bg: ochre
   fg: ink
   badge: "Brassée chez Belnaert"
+  conditionnement: "Bouteilles"
+  cta_label: "Commander"
+  cta_subject: "Commande - Se la couler douze"
 - name: "Bhop en fût"
   bg: brick
   fg: cream
   badge: "Brassée chez Belnaert"
+  conditionnement: "Fûts 20L"
+  cta_label: "Demander un devis"
+  cta_subject: "Devis - Bhop en fût (Belnaert)"
 - name: "Bhop en fût"
   bg: green
   fg: cream
   badge: "Brassée en collectif"
+  conditionnement: "Fûts 20L"
+  litres_restants: "[XX]"
+  cta_label: "Demander un devis"
+  cta_subject: "Devis - Bhop en fût (collectif)"

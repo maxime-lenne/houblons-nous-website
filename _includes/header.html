@@ -6,11 +6,12 @@
 
     <nav aria-label="Navigation principale" class="site-header__nav">
       <a href="{{ '/' | relative_url }}" class="site-header__nav-link"{% if page.url == '/' %} aria-current="page"{% endif %}>Accueil</a>
-      <a href="{{ '/asso/' | relative_url }}" class="site-header__nav-link"{% if page.url == '/asso/' %} aria-current="page"{% endif %}>L'asso</a>
-      <a href="{{ '/quartier/' | relative_url }}" class="site-header__nav-link"{% if page.url == '/quartier/' %} aria-current="page"{% endif %}>Le quartier</a>
-      <a href="{{ '/' | relative_url }}#nos-bieres" class="site-header__nav-link">Nos bières</a>
-      <a href="{{ '/' | relative_url }}#nous-soutenir" class="site-header__nav-link">Nous soutenir</a>
-      <a href="mailto:{{ site.email }}" class="stencil-card stencil-hover label-mono site-header__cta">Nous écrire</a>
+      <a href="{{ '/asso/' | relative_url }}" class="site-header__nav-link"{% if page.url == '/asso/' %} aria-current="page"{% endif %}>L'association</a>
+      <a href="{{ '/culture/' | relative_url }}" class="site-header__nav-link"{% if page.url == '/culture/' %} aria-current="page"{% endif %}>La culture</a>
+      <a href="{{ '/brassage/' | relative_url }}" class="site-header__nav-link"{% if page.url == '/brassage/' %} aria-current="page"{% endif %}>Le brassage</a>
+      <a href="{{ '/quartier/' | relative_url }}" class="site-header__nav-link"{% if page.url == '/quartier/' %} aria-current="page"{% endif %}>Bois Blancs</a>
+      {% capture mailto_adherer %}mailto:{{ site.email }}?subject=Je%20veux%20adh%C3%A9rer{% endcapture %}
+      <a href="{{ mailto_adherer }}" class="stencil-card stencil-hover label-mono site-header__cta">Adhérez</a>
     </nav>
 
     <button type="button" class="stencil-card site-header__burger" data-menu-open aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu">
@@ -31,11 +32,12 @@
     </button>
     <nav aria-label="Navigation mobile" class="site-header__mobile-nav">
       <a href="{{ '/' | relative_url }}" class="site-header__mobile-link">Accueil</a>
-      <a href="{{ '/asso/' | relative_url }}" class="site-header__mobile-link">L'asso</a>
-      <a href="{{ '/quartier/' | relative_url }}" class="site-header__mobile-link">Le quartier</a>
-      <a href="{{ '/' | relative_url }}#nos-bieres" class="site-header__mobile-link">Nos bières</a>
-      <a href="{{ '/' | relative_url }}#nous-soutenir" class="site-header__mobile-link">Nous soutenir</a>
-      <a href="mailto:{{ site.email }}" class="stencil-card label-mono site-header__mobile-cta">Nous écrire</a>
+      <a href="{{ '/asso/' | relative_url }}" class="site-header__mobile-link">L'association</a>
+      <a href="{{ '/culture/' | relative_url }}" class="site-header__mobile-link">La culture</a>
+      <a href="{{ '/brassage/' | relative_url }}" class="site-header__mobile-link">Le brassage</a>
+      <a href="{{ '/quartier/' | relative_url }}" class="site-header__mobile-link">Bois Blancs</a>
+      {% capture mailto_adherer_mobile %}mailto:{{ site.email }}?subject=Je%20veux%20adh%C3%A9rer{% endcapture %}
+      <a href="{{ mailto_adherer_mobile }}" class="stencil-card label-mono site-header__mobile-cta">Adhérez</a>
     </nav>
   </div>
 </header>
