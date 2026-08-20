@@ -5,6 +5,21 @@ on:
   push:
     branches: ["main"]
   workflow_dispatch:
+    inputs:
+      baserow_event:
+        description: 'Type of Baserow event'
+        required: false
+        type: string
+        default: 'webhook'
+      row_id:
+        description: 'Baserow row ID'
+        required: false
+        type: string
+      table_id:
+        description: 'Baserow table ID'
+        required: false
+        type: string
+        default: 'all'
 
 permissions:
   contents: read

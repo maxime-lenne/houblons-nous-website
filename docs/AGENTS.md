@@ -23,7 +23,7 @@ Complete guide for AI assistants working on this repository.
 | Category | Technology |
 |----------|------------|
 | Site Generator | Jekyll 4.3 (Ruby 3.3.5) |
-| CMS | jekyll-baserow-headless-cms (local gem, disabled by default, see `_config.yml` `baserow:`) |
+| CMS | jekyll-baserow-headless-cms (published gem, disabled by default, see `_config.yml` `baserow:`) |
 | Theme | None — this site is not built on jekyll-deep-stack; layouts live in `_layouts/`/`_includes` here |
 | Hosting | GitHub Pages, deployed via `.github/workflows/jekyll.yml` on push to `main` |
 | Package Manager | Bun |
@@ -55,14 +55,34 @@ bun run commit        # Interactive gitmoji commit
 
 ### Baserow CMS
 
-`jekyll-baserow-headless-cms` is consumed as a local, unpublished gem from a sibling checkout
-(`../jekyll-baserow-headless-cms`, see `Gemfile`). `baserow.enabled` is `false` in `_config.yml`
-until the Baserow table exists. To enable:
+`jekyll-baserow-headless-cms` is consumed as a published gem (see `Gemfile`,
+`~> 0.1.0`). `baserow.enabled` is `false` in `_config.yml` until the Baserow table exists.
+To enable:
 
 1. Create the Baserow table matching the `baserow.collections` schema in `_config.yml`.
-2. Copy `env.sample` to `.env` and fill in `BASEROW_TOKEN` / `BASEROW_POSTS_TABLE` (or export
-   them as GitHub Actions secrets for CI).
+2. Copy `env.sample` to `.env` and fill in `BASEROW_TOKEN` / `BASEROW_LOCATIONS_TABLE` (or export
+   them as GitHub Actions secrets for CI — already wired into `.github/workflows/jekyll.yml`).
 3. Set `baserow.enabled: true` in `_config.yml`.
+
+### Automation & Deployment (Baserow → GitHub Pages)
+
+`.github/workflows/jekyll.yml` deploys on every push to `main`, and also accepts a
+`workflow_dispatch` with `baserow_event` / `row_id` / `table_id` inputs so Baserow can trigger a
+rebuild directly when content changes (see the plugin's
+[Automation & Deployment docs](https://github.com/maxime-lenne/jekyll-baserow-headless-cms#automation--deployment)
+for the full rationale). To wire it up:
+
+1. Create a GitHub fine-grained Personal Access Token scoped to this repo with **Actions:
+   Read and write**.
+2. In each Baserow table → **Webhooks** → **Create webhook**:
+   - **Events**: `Rows created`, `Rows updated`, `Rows deleted`
+   - **URL**: `https://api.github.com/repos/maxime-lenne/houblons-nous-website/actions/workflows/jekyll.yml/dispatches`
+   - **Method**: `POST`
+   - **Headers**: `Authorization: Bearer <PAT>`, `Accept: application/vnd.github+json`
+   - **Body**: `{"ref": "main"}`
+3. Repeat per table to watch (webhooks are scoped to one table each).
+
+Manual trigger via GitHub CLI: `gh workflow run jekyll.yml -f baserow_event=manual -f table_id=all`.
 
 ---
 

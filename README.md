@@ -36,7 +36,7 @@
 Static site for **Houblons Nous**, built with [Jekyll](https://jekyllrb.com) and deployed to
 GitHub Pages. Content can be authored as local Markdown (`_posts/`) or synced from Baserow via
 [jekyll-baserow-headless-cms](https://github.com/maxime-lenne/jekyll-baserow-headless-cms)
-(local, unpublished gem) once configured — see [`docs/AGENTS.md`](docs/AGENTS.md#baserow-cms).
+once configured — see [`docs/AGENTS.md`](docs/AGENTS.md#baserow-cms).
 
 This site does not use the [jekyll-deep-stack](https://github.com/maxime-lenne/jekyll-deep-stack)
 theme; layouts, includes, and styles live directly in this repo (`_layouts/`, `_includes/`, `_sass/`).
@@ -44,7 +44,7 @@ theme; layouts, includes, and styles live directly in this repo (`_layouts/`, `_
 ## Stack
 
 - **Jekyll 4.3** (Ruby 3.3.5) — static site generator
-- **jekyll-baserow-headless-cms** — optional Baserow-backed content (disabled by default, local gem)
+- **jekyll-baserow-headless-cms** — optional Baserow-backed content (disabled by default)
 - **Bun** — JS tooling (linting, git hooks, releases)
 - **Husky + lint-staged** — pre-commit checks
 - **Gitmoji + commitlint** — commit convention
