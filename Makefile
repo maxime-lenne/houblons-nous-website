@@ -13,10 +13,14 @@ else
 BUNDLE = bundle
 endif
 
-# Baserow CMS environment variables (only needed once baserow.enabled is true in _config.yml)
-ENV_VARS = BASEROW_TOKEN=$(shell cat .env 2>/dev/null | grep BASEROW_TOKEN | cut -d '=' -f2) \
-	BASEROW_LOCATIONS_TABLE=$(shell cat .env 2>/dev/null | grep BASEROW_LOCATIONS_TABLE | cut -d '=' -f2) \
-	BASEROW_API_URL=$(shell cat .env 2>/dev/null | grep BASEROW_API_URL | cut -d '=' -f2)
+# Baserow CMS environment variables (only needed once baserow.enabled is true in _config.yml).
+# Any *_TABLE var left unset in .env just falls back to the matching local
+# Jekyll collection (see _config.yml `collections:`) — no build breakage.
+BASEROW_ENV_KEYS = BASEROW_TOKEN BASEROW_API_URL \
+	BASEROW_LOCATIONS_TABLE BASEROW_CA_TABLE BASEROW_BUREAU_TABLE BASEROW_BENEVOLES_TABLE \
+	BASEROW_BIERES_TABLE BASEROW_EVENEMENTS_TABLE BASEROW_ASSOCIATIONS_TABLE \
+	BASEROW_QUARTIER_EVENEMENTS_TABLE
+ENV_VARS = $(foreach key,$(BASEROW_ENV_KEYS),$(key)=$(shell cat .env 2>/dev/null | grep "^$(key)=" | cut -d '=' -f2))
 
 help: ## Show this help
 	@echo "Available commands for the Houblons Nous Jekyll site:"

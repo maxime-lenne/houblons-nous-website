@@ -55,11 +55,37 @@ defaults:
     values:
       layout: "page"
 
+# Jekyll collections used purely as a local fallback for the Baserow-backed
+# content below (see docs/AGENTS.md#baserow-cms) — no permalinks/pages, just
+# a folder of documents the plugin reads from when the matching *_TABLE env
+# var isn't set yet, so `make build`/`make serve` still render real content
+# before the Baserow table exists.
+collections:
+  ca:
+    output: false
+  bureau:
+    output: false
+  benevoles:
+    output: false
+  bieres:
+    output: false
+  evenements:
+    output: false
+  associations:
+    output: false
+  quartier_evenements:
+    output: false
+
 # =====================================================
 # BASEROW CMS CONFIGURATION
 # =====================================================
 # Jekyll Baserow Headless CMS Plugin — enabled now that the Locations table
 # exists and BASEROW_TOKEN / BASEROW_LOCATIONS_TABLE are set in .env.
+#
+# The collections below fall back to the local Jekyll collections declared
+# above until their *_TABLE env var is set — see docs/AGENTS.md#baserow-cms
+# for the exact steps (create the table matching the field list, set the
+# env var, done — no code change needed).
 baserow:
   enabled: true
 
@@ -73,6 +99,108 @@ baserow:
       fields:
         - { name: Name, type: text }
         - { name: Active, type: boolean }
+
+    ca:
+      table_env: BASEROW_CA_TABLE
+      data_file: asso_ca.yml
+      organizer: simple_list
+      sort_by: order
+      sort_order: asc
+      fields:
+        - { name: Name, type: text }
+        - { name: Initials, type: text }
+        - { name: Role, type: text }
+        - { name: Color, type: single_select }
+        - { name: Order, type: number }
+
+    bureau:
+      table_env: BASEROW_BUREAU_TABLE
+      data_file: asso_bureau.yml
+      organizer: simple_list
+      sort_by: order
+      sort_order: asc
+      fields:
+        - { name: Name, type: text }
+        - { name: Initials, type: text }
+        - { name: Role, type: text }
+        - { name: Quote, type: text }
+        - { name: Order, type: number }
+
+    benevoles:
+      table_env: BASEROW_BENEVOLES_TABLE
+      data_file: asso_benevoles.yml
+      organizer: simple_list
+      sort_by: order
+      sort_order: asc
+      fields:
+        - { name: Name, type: text }
+        - { name: Order, type: number }
+
+    bieres:
+      table_env: BASEROW_BIERES_TABLE
+      data_file: accueil_bieres.yml
+      organizer: simple_list
+      sort_by: order
+      sort_order: asc
+      fields:
+        - { name: Name, type: text }
+        - { name: Badge, type: text }
+        - { name: Conditionnement, type: single_select }
+        - { name: Litres restants, type: text }
+        - { name: Style, type: text }
+        - { name: ABV, type: text }
+        - { name: IBU, type: number }
+        - { name: Couleur, type: single_select }
+        - { name: CTA label, type: text }
+        - { name: CTA subject, type: text }
+        - { name: Order, type: number }
+
+    evenements:
+      table_env: BASEROW_EVENEMENTS_TABLE
+      data_file: accueil_brassins.yml
+      organizer: simple_list
+      sort_by: order
+      sort_order: asc
+      fields:
+        - { name: Date, type: text, key: event_date }
+        - { name: Name, type: text }
+        - { name: Type, type: single_select }
+        - { name: Style, type: text }
+        - { name: Lieu, type: text }
+        - { name: Text, type: long_text }
+        - { name: Etat, type: single_select }
+        - { name: CTA label, type: text }
+        - { name: CTA subject, type: text }
+        - { name: Order, type: number }
+
+    associations:
+      table_env: BASEROW_ASSOCIATIONS_TABLE
+      data_file: quartier_assos.yml
+      organizer: simple_list
+      sort_by: order
+      sort_order: asc
+      fields:
+        - { name: Name, type: text }
+        - { name: Theme, type: single_select }
+        - { name: Desc, type: long_text }
+        - { name: Url, type: url }
+        - { name: Order, type: number }
+
+    quartier_evenements:
+      table_env: BASEROW_QUARTIER_EVENEMENTS_TABLE
+      data_file: quartier_evenements.yml
+      organizer: simple_list
+      sort_by: order
+      sort_order: asc
+      fields:
+        - { name: Day, type: text }
+        - { name: Month, type: text }
+        - { name: Category, type: single_select }
+        - { name: Title, type: text }
+        - { name: Lieu, type: text }
+        - { name: Orga, type: text }
+        - { name: Order, type: number }
+
 # Exclude from processing
 exclude:
   - _compress_images_cache.yml

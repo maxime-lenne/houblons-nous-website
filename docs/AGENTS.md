@@ -55,14 +55,33 @@ bun run commit        # Interactive gitmoji commit
 
 ### Baserow CMS
 
-`jekyll-baserow-headless-cms` is consumed as a published gem (see `Gemfile`,
-`~> 0.1.0`). `baserow.enabled` is `false` in `_config.yml` until the Baserow table exists.
-To enable:
+`jekyll-baserow-headless-cms` is consumed as a published gem (see `Gemfile`, `~> 0.1.0`).
+`baserow.enabled: true` in `_config.yml`. Each entry under `baserow.collections` maps one
+Baserow table to one `_data/*.yml` file; `location` is already live (fetches from Baserow).
+The rest fall back to a local Jekyll collection (`_ca/`, `_bureau/`, `_benevoles/`, `_bieres/`,
+`_evenements/`, `_associations/`, `_quartier_evenements/` — each `output: false`, seeded with
+the current placeholder content) whenever their `*_TABLE` env var is unset, so the build never
+breaks before a table exists.
 
-1. Create the Baserow table matching the `baserow.collections` schema in `_config.yml`.
-2. Copy `env.sample` to `.env` and fill in `BASEROW_TOKEN` / `BASEROW_LOCATIONS_TABLE` (or export
-   them as GitHub Actions secrets for CI — already wired into `.github/workflows/jekyll.yml`).
-3. Set `baserow.enabled: true` in `_config.yml`.
+| Collection key | `_data/` file | Env var | Feeds |
+|---|---|---|---|
+| `location` | `baserow_locations.yml` | `BASEROW_LOCATIONS_TABLE` | Accueil → Où la trouver ? |
+| `ca` | `asso_ca.yml` | `BASEROW_CA_TABLE` | Asso → Le CA |
+| `bureau` | `asso_bureau.yml` | `BASEROW_BUREAU_TABLE` | Asso → Le bureau |
+| `benevoles` | `asso_benevoles.yml` | `BASEROW_BENEVOLES_TABLE` | Asso → Les bénévoles |
+| `bieres` | `accueil_bieres.yml` | `BASEROW_BIERES_TABLE` | Accueil → Nos bières |
+| `evenements` | `accueil_brassins.yml` | `BASEROW_EVENEMENTS_TABLE` | Accueil → Nos prochains rendez-vous |
+| `associations` | `quartier_assos.yml` | `BASEROW_ASSOCIATIONS_TABLE` | Quartier → On n'est pas tout seuls |
+| `quartier_evenements` | `quartier_evenements.yml` | `BASEROW_QUARTIER_EVENEMENTS_TABLE` | Quartier → Agenda |
+
+To wire up a new table:
+
+1. In Baserow, create a table whose fields match that collection's `fields:` list in
+   `_config.yml` exactly (same names/types — see the `baserow.collections.<key>.fields` block).
+2. Copy `env.sample` to `.env` and fill in the matching `*_TABLE` id (or export it as a GitHub
+   Actions secret for CI — already wired into `.github/workflows/jekyll.yml`).
+3. Rebuild — the generator switches from the local fallback to the live Baserow fetch
+   automatically as soon as the env var is set to a real table id.
 
 ### Automation & Deployment (Baserow → GitHub Pages)
 

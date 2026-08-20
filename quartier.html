@@ -60,7 +60,13 @@ permalink: /quartier/
 
     <div class="assos__grid">
       {% for a in site.data.quartier_assos %}
-        <div class="stencil-card stencil-hover assos__card assos__card--{{ a.color }}">
+        {% assign theme_color = "green" %}
+        {% case a.theme %}
+          {% when "Jardinage" or "Environnement" %}{% assign theme_color = "brick" %}
+          {% when "Sport" %}{% assign theme_color = "ochre" %}
+          {% when "Solidarité" %}{% assign theme_color = "river" %}
+        {% endcase %}
+        <div class="stencil-card stencil-hover assos__card assos__card--{{ theme_color }}">
           <p class="label-mono assos__theme">{{ a.theme }}</p>
           <h3>{{ a.name }}</h3>
           <p>{{ a.desc }}</p>
@@ -86,9 +92,16 @@ permalink: /quartier/
 
     <ul class="evenements__list" data-event-list>
       {% for e in site.data.quartier_evenements %}
+        {% assign event_bg = "green" %}
+        {% assign event_fg = "cream" %}
+        {% case e.category %}
+          {% when "Jardinage" %}{% assign event_bg = "brick" %}
+          {% when "Sport" or "Environnement" %}{% assign event_bg = "ochre" %}{% assign event_fg = "ink" %}
+          {% when "Solidarité" %}{% assign event_bg = "river" %}
+        {% endcase %}
         <li>
           <article class="stencil-card stencil-hover evenements__item" data-category="{{ e.category }}">
-            {% include date-block.html day=e.day month=e.month bg=e.bg fg=e.fg %}
+            {% include date-block.html day=e.day month=e.month bg=event_bg fg=event_fg %}
             <div class="evenements__info">
               <p class="evenements__title">{{ e.title }}</p>
               <p class="label-mono">{{ e.lieu }} · {{ e.orga }}</p>

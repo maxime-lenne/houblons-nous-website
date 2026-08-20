@@ -81,15 +81,17 @@ permalink: /
 
     <div class="bieres__grid">
       {% for biere in site.data.accueil_bieres %}
+        {% assign biere_fg = "cream" %}
+        {% if biere.couleur == "ochre" %}{% assign biere_fg = "ink" %}{% endif %}
         <div class="stencil-card bieres__card">
-          <div class="bieres__card-header bieres__card-header--{{ biere.bg }}" style="color: var(--color-{{ biere.fg }});">
+          <div class="bieres__card-header bieres__card-header--{{ biere.couleur }}" style="color: var(--color-{{ biere_fg }});">
             <h3>{{ biere.name }}</h3>
             <span class="label-mono bieres__badge">{{ biere.badge }}</span>
           </div>
           <dl class="bieres__specs">
-            <div><dt class="label-mono">Style</dt><dd>—</dd></div>
-            <div><dt class="label-mono">ABV</dt><dd>—</dd></div>
-            <div><dt class="label-mono">IBU</dt><dd>—</dd></div>
+            <div><dt class="label-mono">Style</dt><dd>{{ biere.style | default: "—" }}</dd></div>
+            <div><dt class="label-mono">ABV</dt><dd>{{ biere.abv | default: "—" }}</dd></div>
+            <div><dt class="label-mono">IBU</dt><dd>{{ biere.ibu | default: "—" }}</dd></div>
           </dl>
           <div class="bieres__stock">
             <p class="label-mono">{{ biere.conditionnement }}</p>
@@ -147,16 +149,21 @@ permalink: /
 
     <ol class="brassins__list">
       {% for b in site.data.accueil_brassins %}
+        {% assign type_color = "ochre" %}
+        {% if b.type == "Brassin" %}{% assign type_color = "green" %}{% endif %}
+        {% assign etat_bg = "concrete" %}
+        {% assign etat_fg = "ink" %}
+        {% if b.etat == "Complet" %}{% assign etat_bg = "brick" %}{% assign etat_fg = "cream" %}{% elsif b.etat == "Places dispo" %}{% assign etat_bg = "green" %}{% assign etat_fg = "cream" %}{% endif %}
         <li class="brassins__item">
           <span class="brassins__dot" aria-hidden="true">{% include picto.html type="hop" class="picto--sm" %}</span>
           <div class="stencil-card brassins__card">
-            <span class="label-mono brassins__type brassins__type--{{ b.type_color }}">{{ b.type }}</span>
-            <p class="label-mono brassins__date">{{ b.date }}</p>
+            <span class="label-mono brassins__type brassins__type--{{ type_color }}">{{ b.type }}</span>
+            <p class="label-mono brassins__date">{{ b.event_date }}</p>
             <h3>{{ b.name }}</h3>
             {% if b.style %}<p class="label-mono">{{ b.style }}</p>{% endif %}
             {% if b.lieu %}<p class="label-mono">{{ b.lieu }}</p>{% endif %}
             {% if b.text %}<p>{{ b.text }}</p>{% endif %}
-            {% if b.etat %}<span class="label-mono brassins__etat" style="background-color: var(--color-{{ b.etat_bg }}); color: var(--color-{{ b.etat_fg }});">{{ b.etat }}</span>{% endif %}
+            {% if b.etat %}<span class="label-mono brassins__etat" style="background-color: var(--color-{{ etat_bg }}); color: var(--color-{{ etat_fg }});">{{ b.etat }}</span>{% endif %}
             {% if b.cta_label %}<a href="mailto:{{ site.email }}?subject={{ b.cta_subject | url_encode }}" class="label-mono brassins__cta">{{ b.cta_label }}</a>{% endif %}
           </div>
         </li>
