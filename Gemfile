@@ -12,7 +12,7 @@ group :jekyll_plugins do
   gem "jekyll-paginate", "~> 1.1"        # Blog pagination
   gem "jekyll-compress-images", "~> 1.1" # Image optimization
   gem "jekyll-minifier", "~> 0.1"        # HTML/CSS/JS compression
-  gem "jekyll-baserow-headless-cms", path: "../jekyll-baserow-headless-cms" # Baserow CMS integration (local, unpublished)
+  gem "jekyll-baserow-headless-cms", "~> 0.1.0" # Baserow CMS integration
 end
 
 # System gems for Ruby 3.3.5 compatibility
