@@ -98,8 +98,8 @@ permalink: /
             <div><dt class="label-mono">IBU</dt><dd>{{ biere.ibu | default: "—" }}</dd></div>
           </dl>
           <div class="bieres__stock">
-            <p class="label-mono">{{ biere.conditionnement }}</p>
-            {% if biere.litres_restants %}<p class="label-mono">{{ biere.litres_restants }} L restants</p>{% endif %}
+            {% if biere.conditionnement_unite %}<p class="label-mono">{{ biere.conditionnement_unite }}</p>{% endif %}
+            {% if biere.nombre_restants %}<p class="label-mono">{{ biere.nombre_restants }} restants</p>{% endif %}
           </div>
           <a href="mailto:{{ site.email }}?subject={{ biere.cta_subject | url_encode }}" class="label-mono bieres__cta">{{ biere.cta_label }}</a>
         </div>
@@ -121,7 +121,7 @@ permalink: /
             {% include picto.html type="hop" class="picto--sm" %}
             <div>
               <p class="trouver__item-name">{{ location.name }}</p>
-              <p class="label-mono">Point de vente · [ADRESSE À CONFIRMER]</p>
+              <p class="label-mono">{{ location.type | join: " · " | default: "Point de vente" }} · [ADRESSE À CONFIRMER]</p>
             </div>
             <a href="mailto:{{ site.email }}" aria-label="Nous signaler un point de vente : {{ location.name }}" class="label-mono">à compléter</a>
           </li>
@@ -162,7 +162,9 @@ permalink: /
           <span class="brassins__dot" aria-hidden="true">{% include picto.html type="hop" class="picto--sm" %}</span>
           <div class="stencil-card brassins__card">
             <span class="label-mono brassins__type brassins__type--{{ type_color }}">{{ b.type }}</span>
-            <p class="label-mono brassins__date">{{ b.event_date }}</p>
+            <p class="label-mono brassins__date">
+              {% if b.start_date %}{% include date-fr.html date=b.start_date part="full_time" %}{% else %}Date à confirmer{% endif %}
+            </p>
             <h3>{{ b.name }}</h3>
             {% if b.style %}<p class="label-mono">{{ b.style }}</p>{% endif %}
             {% if b.lieu %}<p class="label-mono">{{ b.lieu }}</p>{% endif %}

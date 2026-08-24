@@ -1,0 +1,18 @@
+{%- comment -%}
+  Params: date (required, ISO 8601 string from Baserow, in UTC), part ("day" | "month_abbr" | "full" | "full_time")
+  Baserow returns date fields as UTC ("...Z"); Liquid's plain `date` filter re-parses a string
+  as-is without converting timezone, so we run it through Jekyll's `date_to_xmlschema` filter
+  first — that one does call `.localtime` (using the site's `timezone:` config) — to get a
+  string already expressed in local time before formatting it further.
+  Liquid's `date` filter also only knows English month names, so this maps the month number to French.
+{%- endcomment -%}
+{%- assign months_full = "janvier,février,mars,avril,mai,juin,juillet,août,septembre,octobre,novembre,décembre" | split: "," -%}
+{%- assign months_abbr = "JANV,FÉVR,MARS,AVR,MAI,JUIN,JUIL,AOÛT,SEPT,OCT,NOV,DÉC" | split: "," -%}
+{%- assign local_date = include.date | date_to_xmlschema -%}
+{%- assign month_index = local_date | date: "%-m" | minus: 1 -%}
+{%- case include.part -%}
+  {%- when "day" -%}{{ local_date | date: "%-d" }}
+  {%- when "month_abbr" -%}{{ months_abbr[month_index] }}
+  {%- when "full" -%}{{ local_date | date: "%-d" }} {{ months_full[month_index] }} {{ local_date | date: "%Y" }}
+  {%- when "full_time" -%}{{ local_date | date: "%-d" }} {{ months_full[month_index] }} {{ local_date | date: "%Y" }} · {{ local_date | date: "%Hh%M" }}
+{%- endcase -%}

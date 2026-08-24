@@ -47,6 +47,6 @@
   },
   "lint-staged": {
     "*.md": "markdownlint --fix",
-    "*.{yml,yaml}": "yamllint"
+    "!(baserow_locations|quartier_assos).{yml,yaml}": "yamllint"
   }
 }
