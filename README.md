@@ -38,8 +38,7 @@ GitHub Pages. Content can be authored as local Markdown (`_posts/`) or synced fr
 [jekyll-baserow-headless-cms](https://github.com/maxime-lenne/jekyll-baserow-headless-cms)
 once configured — see [`docs/AGENTS.md`](docs/AGENTS.md#baserow-cms).
 
-This site does not use the [jekyll-deep-stack](https://github.com/maxime-lenne/jekyll-deep-stack)
-theme; layouts, includes, and styles live directly in this repo (`_layouts/`, `_includes/`, `_sass/`).
+layouts, includes, and styles live directly in this repo (`_layouts/`, `_includes/`, `_sass/`).
 
 ## Stack
 
