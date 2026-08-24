@@ -4,6 +4,10 @@ email: "houblonsnousbb@gmail.com"
 description: "Bar à bières, Bois Blancs, Lille"
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://houblons-nous.org" # the base hostname & protocol for your site
+# Baserow's Start Date / End Date fields come back from the API as UTC ISO
+# 8601 strings — without this, Liquid's `date` filter renders them in UTC
+# instead of the local time shown in the Baserow UI.
+timezone: Europe/Paris
 
 # Author information
 author:
@@ -95,6 +99,7 @@ baserow:
       fields:
         - { name: Name, type: text }
         - { name: Active, type: boolean }
+        - { name: Type, type: multi_select }
 
     people:
       table_env: BASEROW_PEOPLE_TABLE
@@ -119,9 +124,11 @@ baserow:
       sort_order: asc
       fields:
         - { name: Name, type: text }
+        - { name: Date de conditionnement, type: date, key: conditionnement_date }
+        - { name: Unitée / conditionnement, type: single_select, key: conditionnement_unite }
+        - { name: Nombre produit, type: number }
+        - { name: Nombre restants, type: number }
         - { name: Badge, type: text }
-        - { name: Conditionnement, type: single_select }
-        - { name: Litres restants, type: text }
         - { name: Style, type: text }
         - { name: ABV, type: text }
         - { name: IBU, type: number }
@@ -137,8 +144,9 @@ baserow:
       sort_by: order
       sort_order: asc
       fields:
-        - { name: Date, type: text, key: event_date }
         - { name: Name, type: text }
+        - { name: Start Date, type: date, key: start_date }
+        - { name: End Date, type: date, key: end_date }
         - { name: Type, type: single_select }
         - { name: Style, type: text }
         - { name: Lieu, type: text }
@@ -156,7 +164,7 @@ baserow:
       sort_order: asc
       fields:
         - { name: Name, type: text }
-        - { name: Theme, type: single_select }
+        - { name: Theme, type: multi_select }
         - { name: Desc, type: long_text }
         - { name: Url, type: url }
         - { name: Order, type: number }
@@ -168,10 +176,10 @@ baserow:
       sort_by: order
       sort_order: asc
       fields:
-        - { name: Day, type: text }
-        - { name: Month, type: text }
-        - { name: Category, type: single_select }
         - { name: Title, type: text }
+        - { name: Start Date, type: date, key: start_date }
+        - { name: End Date, type: date, key: end_date }
+        - { name: Category, type: single_select }
         - { name: Lieu, type: text }
         - { name: Orga, type: text }
         - { name: Order, type: number }

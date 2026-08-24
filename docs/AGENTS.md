@@ -70,14 +70,38 @@ yamllint's `indent-sequences` rule on the generated `_data/asso_people.yml`), fi
 in Liquid: see `asso.html`'s `site.data.asso_people | where: "type", "CA"` (and `"Bureau"`,
 `"Bénévole"`).
 
-| Collection key | `_data/` file | Env var | Feeds |
-|---|---|---|---|
-| `location` | `baserow_locations.yml` | `BASEROW_LOCATIONS_TABLE` | Accueil → Où la trouver ? |
-| `people` | `asso_people.yml` | `BASEROW_PEOPLE_TABLE` | Asso → Le CA / Le bureau / Les bénévoles |
-| `bieres` | `accueil_bieres.yml` | `BASEROW_BIERES_TABLE` | Accueil → Nos bières |
-| `evenements` | `accueil_brassins.yml` | `BASEROW_EVENEMENTS_TABLE` | Accueil → Nos prochains rendez-vous |
-| `associations` | `quartier_assos.yml` | `BASEROW_ASSOCIATIONS_TABLE` | Quartier → On n'est pas tout seuls |
-| `quartier_evenements` | `quartier_evenements.yml` | `BASEROW_QUARTIER_EVENEMENTS_TABLE` | Quartier → Agenda |
+Baserow table names are lowercase-kebab (`peoples`, `locations`, `beers`, `events`,
+`local-organizations`, `local-events`) — this is cosmetic only, the plugin matches tables by id
+(via each `*_TABLE` env var), never by name, so renaming a table in Baserow never requires a code
+change here.
+
+| Collection key | Baserow table | `_data/` file | Env var | Feeds |
+|---|---|---|---|---|
+| `location` | `locations` | `baserow_locations.yml` | `BASEROW_LOCATIONS_TABLE` | Accueil → Où la trouver ? |
+| `people` | `peoples` | `asso_people.yml` | `BASEROW_PEOPLE_TABLE` | Asso → Le CA / Le bureau / Les bénévoles |
+| `bieres` | `beers` | `accueil_bieres.yml` | `BASEROW_BIERES_TABLE` | Accueil → Nos bières |
+| `evenements` | `events` | `accueil_brassins.yml` | `BASEROW_EVENEMENTS_TABLE` | Accueil → Nos prochains rendez-vous |
+| `associations` | `local-organizations` | `quartier_assos.yml` | `BASEROW_ASSOCIATIONS_TABLE` | Quartier → On n'est pas tout seuls |
+| `quartier_evenements` | `local-events` | `quartier_evenements.yml` | `BASEROW_QUARTIER_EVENEMENTS_TABLE` | Quartier → Agenda |
+
+Field-level notes (where the Baserow field name/type diverges from a naive guess):
+
+- `location` (table `locations`): `Type` is a **multiple select** (`Bar` / `Dépôt`) — rendered
+  in "Où la trouver ?" as `location.type | join: " · "`.
+- `bieres` (table `beers`): `Litres restants` (text) and `Conditionnement` (single select) were
+  replaced by `Nombre produit` / `Nombre restants` (numbers) and `Unitée / conditionnement`
+  (single select) — the latter two are re-keyed via `key:` to `conditionnement_date` and
+  `conditionnement_unite` since the raw Baserow names contain spaces/accents/slashes that don't
+  normalize to clean Liquid variable names.
+- `evenements` and `quartier_evenements`: both dropped their old text-based date fields
+  (`Date`, or `Day`/`Month`) in favor of real **date** fields `Start Date` / `End Date`
+  (`start_date` / `end_date`). Baserow returns these as ISO 8601 strings; `_includes/date-fr.html`
+  formats them in French (Liquid's `date` filter only knows English month names) — used directly
+  in `index.html`'s rendez-vous list (`part="full_time"`) and via `_includes/date-block.html`'s
+  day/month props in `quartier.html`'s agenda (`part="day"` / `part="month_abbr"`).
+- `associations` (table `local-organizations`): `Theme` is a **multiple select**, not single —
+  `quartier.html` derives its card color from `a.theme | first` and displays all tags joined with
+  `" · "`.
 
 To wire up a new table:
 
