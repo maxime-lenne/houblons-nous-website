@@ -15,19 +15,23 @@ permalink: /
 
   <div class="container-page hero__content">
     <div class="stencil-card hero__card">
-      <p class="label-mono hero__label">Bois Blancs · Lille · brasseurs amateurs</p>
-      <h1>{{ site.title }}</h1>
-      <p class="hero__lede">On cultive le houblon, on brasse la bière, on la boit ensemble. Depuis les Bois Blancs, entre la Deûle et les bouleaux.</p>
+      <p class="label-mono hero__label">Bois-Blancs · Lille · depuis [XXXX]</p>
+      <h1 class="hero__headline">
+        <span class="hero__headline-stencil">Cultivons</span>
+        <span class="hand hero__headline-script">notre quartier,</span>
+        <span class="hero__headline-stencil">brassons</span>
+        <span class="hand hero__headline-script">nos liens.</span>
+      </h1>
       <div class="hero__actions">
-        {% include stencil-button.html href="#nos-bieres" variant="green" label="Découvrir nos bières" %}
         {% capture mailto_join %}mailto:{{ site.email }}?subject=Rejoindre%20l'asso{% endcapture %}
-        {% include stencil-button.html href=mailto_join variant="cream" label="Nous rejoindre" %}
+        {% include stencil-button.html href=mailto_join variant="brick" label="Rejoindre l'asso »" %}
+        {% include stencil-button.html href="#brassins" variant="cream" label="Voir les brassins" %}
       </div>
     </div>
   </div>
-
-  <p class="label-mono hero__strip">▸ Prochain rendez-vous : la récolte — [DATE À CONFIRMER]</p>
 </section>
+
+<p class="label-mono hero__strip">▸ Prochain rendez-vous : la récolte — [DATE À CONFIRMER]</p>
 
 <section id="actes" class="actes section-pad">
   <div class="container-page">
