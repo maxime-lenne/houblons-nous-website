@@ -8,6 +8,7 @@
 
 .asso-hero {
   position: relative;
+  min-height: clamp(22rem, 40vw, 33rem);
   border-bottom: 2px solid var(--color-ink);
   overflow: hidden;
 }
