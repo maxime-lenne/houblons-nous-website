@@ -58,17 +58,22 @@ bun run commit        # Interactive gitmoji commit
 `jekyll-baserow-headless-cms` is consumed as a published gem (see `Gemfile`, `~> 0.1.0`).
 `baserow.enabled: true` in `_config.yml`. Each entry under `baserow.collections` maps one
 Baserow table to one `_data/*.yml` file; `location` is already live (fetches from Baserow).
-The rest fall back to a local Jekyll collection (`_ca/`, `_bureau/`, `_benevoles/`, `_bieres/`,
-`_evenements/`, `_associations/`, `_quartier_evenements/` — each `output: false`, seeded with
-the current placeholder content) whenever their `*_TABLE` env var is unset, so the build never
-breaks before a table exists.
+The rest fall back to a local Jekyll collection (`_people/`, `_bieres/`, `_evenements/`,
+`_associations/`, `_quartier_evenements/` — each `output: false`, seeded with the current
+placeholder content) whenever their `*_TABLE` env var is unset, so the build never breaks
+before a table exists.
+
+`people` covers CA, Bureau, and Bénévoles as **one Baserow table** ("peoples"), distinguished
+by a `Type` field (`CA` / `Bureau` / `Bénévole`) rather than three separate tables. It's a flat
+`simple_list` (same shape as every other collection here — a nested `grouped_by` hash trips
+yamllint's `indent-sequences` rule on the generated `_data/asso_people.yml`), filtered by type
+in Liquid: see `asso.html`'s `site.data.asso_people | where: "type", "CA"` (and `"Bureau"`,
+`"Bénévole"`).
 
 | Collection key | `_data/` file | Env var | Feeds |
 |---|---|---|---|
 | `location` | `baserow_locations.yml` | `BASEROW_LOCATIONS_TABLE` | Accueil → Où la trouver ? |
-| `ca` | `asso_ca.yml` | `BASEROW_CA_TABLE` | Asso → Le CA |
-| `bureau` | `asso_bureau.yml` | `BASEROW_BUREAU_TABLE` | Asso → Le bureau |
-| `benevoles` | `asso_benevoles.yml` | `BASEROW_BENEVOLES_TABLE` | Asso → Les bénévoles |
+| `people` | `asso_people.yml` | `BASEROW_PEOPLE_TABLE` | Asso → Le CA / Le bureau / Les bénévoles |
 | `bieres` | `accueil_bieres.yml` | `BASEROW_BIERES_TABLE` | Accueil → Nos bières |
 | `evenements` | `accueil_brassins.yml` | `BASEROW_EVENEMENTS_TABLE` | Accueil → Nos prochains rendez-vous |
 | `associations` | `quartier_assos.yml` | `BASEROW_ASSOCIATIONS_TABLE` | Quartier → On n'est pas tout seuls |

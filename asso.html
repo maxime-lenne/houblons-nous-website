@@ -78,7 +78,8 @@ permalink: /asso/
     {% include section-header.html overtitle="celles et ceux qui tiennent la barre" title="Le CA" %}
 
     <div class="ca__grid">
-      {% for m in site.data.asso_ca %}
+      {% assign ca_people = site.data.asso_people | where: "type", "CA" %}
+      {% for m in ca_people %}
         <div class="stencil-card stencil-hover ca__card">
           <span class="ca__badge ca__badge--{{ m.color }}">{{ m.initials }}</span>
           <p class="ca__name">{{ m.name }}</p>
@@ -94,7 +95,8 @@ permalink: /asso/
     {% include section-header.html overtitle="l'équipe resserrée" title="Le bureau" %}
 
     <div class="bureau__grid">
-      {% for m in site.data.asso_bureau %}
+      {% assign bureau_people = site.data.asso_people | where: "type", "Bureau" %}
+      {% for m in bureau_people %}
         <div class="stencil-card bureau__card">
           <span class="ca__badge ca__badge--green bureau__badge">{{ m.initials }}</span>
           <p class="ca__name">{{ m.name }}</p>
@@ -109,7 +111,8 @@ permalink: /asso/
 <section class="benevoles section-pad">
   <div class="container-page">
     {% include section-header.html overtitle="ils donnent un coup de main" title="Les bénévoles" %}
-    <p class="benevoles__list">{{ site.data.asso_benevoles | map: "name" | join: ", " }}</p>
+    {% assign benevole_people = site.data.asso_people | where: "type", "Bénévole" %}
+    <p class="benevoles__list">{{ benevole_people | map: "name" | join: ", " }}</p>
     <p>Merci à elles et eux : sans les bénévoles, pas de récolte, pas de brassin, pas de stand le samedi.</p>
     <p>Envie de filer un coup de main ? Écrivez-nous, il y a toujours de la place autour de la cuve.</p>
     {% capture mailto_benevole %}mailto:{{ site.email }}?subject=Je%20veux%20aider%20comme%20b%C3%A9n%C3%A9vole{% endcapture %}

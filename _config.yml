@@ -61,11 +61,7 @@ defaults:
 # var isn't set yet, so `make build`/`make serve` still render real content
 # before the Baserow table exists.
 collections:
-  ca:
-    output: false
-  bureau:
-    output: false
-  benevoles:
+  people:
     output: false
   bieres:
     output: false
@@ -100,40 +96,19 @@ baserow:
         - { name: Name, type: text }
         - { name: Active, type: boolean }
 
-    ca:
-      table_env: BASEROW_CA_TABLE
-      data_file: asso_ca.yml
+    people:
+      table_env: BASEROW_PEOPLE_TABLE
+      data_file: asso_people.yml
       organizer: simple_list
       sort_by: order
       sort_order: asc
       fields:
         - { name: Name, type: text }
-        - { name: Initials, type: text }
-        - { name: Role, type: text }
-        - { name: Color, type: single_select }
-        - { name: Order, type: number }
-
-    bureau:
-      table_env: BASEROW_BUREAU_TABLE
-      data_file: asso_bureau.yml
-      organizer: simple_list
-      sort_by: order
-      sort_order: asc
-      fields:
-        - { name: Name, type: text }
+        - { name: Type, type: single_select }
         - { name: Initials, type: text }
         - { name: Role, type: text }
         - { name: Quote, type: text }
-        - { name: Order, type: number }
-
-    benevoles:
-      table_env: BASEROW_BENEVOLES_TABLE
-      data_file: asso_benevoles.yml
-      organizer: simple_list
-      sort_by: order
-      sort_order: asc
-      fields:
-        - { name: Name, type: text }
+        - { name: Color, type: single_select }
         - { name: Order, type: number }
 
     bieres:
