@@ -186,6 +186,7 @@ baserow:
 
 # Exclude from processing
 exclude:
+  - wrangler.jsonc
   - _compress_images_cache.yml
   - Gemfile
   - Gemfile.lock

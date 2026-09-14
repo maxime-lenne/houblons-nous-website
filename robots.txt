@@ -1,0 +1,21 @@
+---
+permalink: /robots.txt
+layout: none
+sitemap: false
+---
+{% if site.noindex -%}
+# Preview deployment — not the real site: https://houblons-nous.org
+#
+# Crawling stays allowed on purpose. "Disallow: /" would look stricter but is
+# actually weaker: a blocked crawler never reads the noindex meta tag, and
+# Google can still list a blocked URL it found elsewhere. Letting robots in so
+# they read the noindex (see _includes/head.html and _headers) is what gets
+# these pages kept out of, or dropped from, the index.
+User-agent: *
+Allow: /
+{%- else -%}
+User-agent: *
+Allow: /
+
+Sitemap: {{ site.url }}{{ site.baseurl }}/sitemap.xml
+{%- endif %}
