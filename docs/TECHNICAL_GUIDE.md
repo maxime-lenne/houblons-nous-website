@@ -51,11 +51,27 @@ jobs:
       - run: yamllint .
 ```
 
+### Deploy Workflow
+
+`.github/workflows/jekyll.yml` builds with `make production` and deploys to GitHub Pages on every
+push to `main` (houblons-nous.org). It also accepts a `workflow_dispatch` so Baserow webhooks can
+trigger a content rebuild.
+
+### Branch Previews
+
+Cloudflare Workers Builds builds every other branch with `bundle install && make preview` and
+serves `_site` as a static-only Worker (`wrangler.jsonc`). Previews carry a `noindex` meta tag and
+an `X-Robots-Tag` header so they never compete with production in search results — the full
+rationale and the Cloudflare project settings are in
+[AGENTS.md](AGENTS.md#preview-deployments-cloudflare-workers).
+
+Ruby is pinned by `.ruby-version` (3.3.5) because the Cloudflare build image reads that file, not
+the `.tool-versions` used by asdf locally. Keep the two in sync.
+
 ### Additional Workflows (Future)
 
 - **PR Checks** - Tests, type checking
 - **Security** - CodeQL analysis
-- **Deploy** - Automated deployment
 
 ---
 
@@ -70,7 +86,7 @@ Husky runs lint-staged automatically on commit:
 {
   "lint-staged": {
     "*.md": "markdownlint --fix",
-    "*.{yml,yaml}": "yamllint"
+    "!(baserow_locations|quartier_assos).{yml,yaml}": "yamllint"
   }
 }
 ```
@@ -310,4 +326,4 @@ Uses `.github/ISSUE_TEMPLATE/feature_request.yml`:
 
 ---
 
-*Last updated: 2026-03-03*
+*Last updated: 2026-09-14*

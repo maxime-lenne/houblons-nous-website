@@ -26,6 +26,7 @@ Complete guide for AI assistants working on this repository.
 | CMS | jekyll-baserow-headless-cms (published gem, disabled by default, see `_config.yml` `baserow:`) |
 | Theme | None — this site is not built on jekyll-deep-stack; layouts live in `_layouts/`/`_includes` here |
 | Hosting | GitHub Pages, deployed via `.github/workflows/jekyll.yml` on push to `main` |
+| Branch Previews | Cloudflare Workers Builds (`wrangler.jsonc`), noindex — see below |
 | Package Manager | Bun |
 | Node Version | >= 22.11.0 |
 | Git Hooks | Husky + lint-staged |
@@ -33,7 +34,7 @@ Complete guide for AI assistants working on this repository.
 | Commit Validation | commitlint |
 | Linting | markdownlint, yamllint |
 | Dependency Updates | Renovate, Dependabot |
-| CI/CD | GitHub Actions |
+| CI/CD | GitHub Actions, Cloudflare Workers Builds |
 
 ### Available Commands
 
