@@ -151,13 +151,34 @@ Cloudflare project settings (Workers → Create an app → connect this repo):
 | Non-production branch deploy command | `npx wrangler versions upload` (default) |
 | Builds for non-production branches | enabled |
 | Production branch | `develop` — Cloudflare's "production", *not* the real site |
+| Builds for non-production branches | off — see *Limiting which branches build* below |
 | Build variables | the same `BASEROW_*` secrets as `.github/workflows/jekyll.yml` |
 
 There is no "output directory" field in this flow — `assets.directory` in `wrangler.jsonc` plays
 that role. `bundle install` has to be spelled out in the build command: unlike the old Pages
-Jekyll preset, Workers Builds does not run it for you. Ruby defaults to 3.4.4 in the build image
-and is pinned to 3.3.5 by `.ruby-version`; the image reads that file, **not** the `.tool-versions`
-used by asdf locally, so the two have to be kept in sync.
+Jekyll preset, Workers Builds does not run it for you. The build image honours `.tool-versions`
+(the build log reports `bun@1.3.8, ruby@3.3.5, nodejs@24.18.0`), so no extra version file is
+needed even though Cloudflare's docs only mention `.ruby-version`.
+
+The container sets no UTF-8 locale, so Ruby reads files as US-ASCII and the first accented
+character in `_people/` crashes jekyll-baserow-headless-cms with `Encoding::CompatibilityError`.
+The Makefile exports `RUBYOPT := -EUTF-8` to force the encoding regardless of the host's locales.
+Reproduce locally with `LANG=C LC_ALL=C make preview`.
+
+### Limiting which branches build
+
+Workers Builds branch control is all-or-nothing — **Settings → Build → Branch control** offers a
+production-branch dropdown and a single **Builds for non-production branches** checkbox. Unlike
+the old Pages UI there are no include/exclude branch patterns, so the choice is:
+
+- **Checkbox off** — only `develop` builds, giving one stable test URL. Simplest, and enough for
+  sharing a preview with the association.
+- **Checkbox on** — every push to every branch builds and burns a build minute.
+
+**Build watch paths** (same settings page) filter by changed *file path*, not by branch — for
+example include `*` and exclude `docs/*` to skip doc-only pushes. Useful, but not a branch filter.
+Per-PR previews without building every branch would mean dropping the git integration and calling
+`wrangler versions upload` from a GitHub Actions job scoped to pull requests.
 
 `develop` lands on `https://houblons-nous-website.<subdomain>.workers.dev`; every other branch
 gets a per-version `https://<version-prefix>-houblons-nous-website.<subdomain>.workers.dev`.
