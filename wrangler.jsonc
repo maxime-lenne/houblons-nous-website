@@ -1,0 +1,14 @@
+{
+  // Cloudflare Workers config for the branch previews — production stays on
+  // GitHub Pages (main -> houblons-nous.org, see .github/workflows/jekyll.yml).
+  // Docs: docs/AGENTS.md#preview-deployments-cloudflare-workers
+  "name": "houblons-nous-website",
+  "compatibility_date": "2026-09-14",
+
+  // Static-only Worker: no "main" entrypoint, Cloudflare just serves the
+  // Jekyll output. `_site/_headers` (emitted by preview builds only) is read
+  // from here as configuration and applies the noindex header.
+  "assets": {
+    "directory": "./_site"
+  }
+}

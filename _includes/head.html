@@ -2,6 +2,10 @@
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  {%- if site.noindex %}
+  {%- comment %} Preview build (_config_preview.yml) — keep this copy of the site out of search results. {%- endcomment %}
+  <meta name="robots" content="noindex, nofollow">
+  {%- endif %}
   {% seo %}
   <link rel="icon" href="{{ '/favicon.ico' | relative_url }}" sizes="any">
   <link rel="icon" href="{{ '/assets/images/icon.png' | relative_url }}" type="image/png">
