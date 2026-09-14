@@ -10,6 +10,7 @@ Main guide for AI assistants working on this repository.
 make install           # Install Ruby + Node.js dependencies
 make serve              # Start the Jekyll dev server (http://localhost:4001)
 make production         # Build the site for production
+make preview            # Build a noindex preview (Cloudflare Workers branch deploys)
 bun run lint          # Lint markdown and yaml
 bun run lint:md       # Lint markdown only
 bun run lint:md:fix   # Auto-fix markdown

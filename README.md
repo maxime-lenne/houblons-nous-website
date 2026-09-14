@@ -34,7 +34,8 @@
 ---
 
 Static site for **Houblons Nous**, built with [Jekyll](https://jekyllrb.com) and deployed to
-GitHub Pages. Content can be authored as local Markdown (`_posts/`) or synced from Baserow via
+GitHub Pages, with branch previews on Cloudflare Workers. Content can be authored as local
+Markdown (`_posts/`) or synced from Baserow via
 [jekyll-baserow-headless-cms](https://github.com/maxime-lenne/jekyll-baserow-headless-cms)
 once configured — see [`docs/AGENTS.md`](docs/AGENTS.md#baserow-cms).
 
@@ -48,6 +49,8 @@ layouts, includes, and styles live directly in this repo (`_layouts/`, `_include
 - **Husky + lint-staged** — pre-commit checks
 - **Gitmoji + commitlint** — commit convention
 - **GitHub Actions** — lint on PR, deploy to GitHub Pages on push to `main`
+- **Cloudflare Workers Builds** — noindex preview URL per branch, see
+  [`docs/AGENTS.md`](docs/AGENTS.md#preview-deployments-cloudflare-workers)
 
 ## Getting started
 
@@ -56,8 +59,8 @@ make install   # Ruby + Node.js dependencies (asdf, bundler, bun)
 make serve     # Dev server at http://localhost:4001
 ```
 
-Other useful targets: `make build`, `make production`, `make clean` — see `make help` for the
-full list.
+Other useful targets: `make build`, `make production`, `make preview`, `make clean` — see
+`make help` for the full list.
 
 ## Usage
 
