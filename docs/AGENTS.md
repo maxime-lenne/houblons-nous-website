@@ -42,6 +42,7 @@ make install           # Install Ruby + Node.js dependencies (asdf, bundler, bun
 make serve              # Start the Jekyll dev server on http://localhost:4001
 make build              # Build the site in development mode
 make production         # Build the site for production (minified)
+make preview            # Build a noindex preview of a branch (used by Cloudflare Pages)
 make clean              # Remove _site, .jekyll-cache, .sass-cache
 
 bun install           # Install JS tooling only
@@ -131,6 +132,58 @@ for the full rationale). To wire it up:
 3. Repeat per table to watch (webhooks are scoped to one table each).
 
 Manual trigger via GitHub CLI: `gh workflow run jekyll.yml -f baserow_event=manual -f table_id=all`.
+
+### Preview Deployments (Cloudflare Workers)
+
+GitHub Pages serves one site per repository, so `develop` can't get a URL there without
+overwriting production. Production therefore stays on GitHub Pages (`main` → houblons-nous.org)
+and branch previews are built by Cloudflare Workers Builds instead. `wrangler.jsonc` declares a
+static-only Worker (no `main` entrypoint) serving `./_site`.
+
+Cloudflare project settings (Workers → Create an app → connect this repo):
+
+| Setting | Value |
+| --- | --- |
+| Project name | `houblons-nous-website` (must match `name` in `wrangler.jsonc`) |
+| Build command | `bundle install && make preview` |
+| Deploy command | `npx wrangler deploy` (default) |
+| Non-production branch deploy command | `npx wrangler versions upload` (default) |
+| Builds for non-production branches | enabled |
+| Production branch | `develop` — Cloudflare's "production", *not* the real site |
+| Build variables | the same `BASEROW_*` secrets as `.github/workflows/jekyll.yml` |
+
+There is no "output directory" field in this flow — `assets.directory` in `wrangler.jsonc` plays
+that role. `bundle install` has to be spelled out in the build command: unlike the old Pages
+Jekyll preset, Workers Builds does not run it for you. Ruby defaults to 3.4.4 in the build image
+and is pinned to 3.3.5 by `.ruby-version`; the image reads that file, **not** the `.tool-versions`
+used by asdf locally, so the two have to be kept in sync.
+
+`develop` lands on `https://houblons-nous-website.<subdomain>.workers.dev`; every other branch
+gets a per-version `https://<version-prefix>-houblons-nous-website.<subdomain>.workers.dev`.
+
+**A preview must never be indexed** — it is a byte-for-byte copy of the real site and would
+compete with it in search results. Cloudflare documents no automatic `noindex` on `workers.dev`
+preview URLs, so this is entirely on us: `_config_preview.yml` layers three independent defenses
+on top of the production config.
+
+1. `noindex: true` → `<meta name="robots" content="noindex, nofollow">` in `_includes/head.html`.
+2. `_headers` (shipped only by preview builds, via that config's `include:`) sets
+   `X-Robots-Tag: noindex, nofollow` on every response — it also covers `feed.xml` and assets,
+   which a meta tag can't. Workers static assets parse this file as configuration rather than
+   serving it.
+3. `url: ""` → relative canonical/og tags, which resolve against whichever preview host is
+   serving the page. A literal value can't work (the host changes every deployment) and keeping
+   production's would point every canonical back at houblons-nous.org.
+
+`make preview` also deletes `_site/sitemap.xml` (a ready-made list of preview URLs) and
+`_site/CNAME` (a GitHub Pages convention, meaningless to Cloudflare).
+
+Note what is deliberately *not* done: `robots.txt` does **not** send `Disallow: /` on previews.
+Blocking the crawl looks stricter but is weaker — a crawler that can't fetch the page never reads
+the `noindex`, and Google can still list a blocked URL it discovered elsewhere. Letting robots in
+so they read the noindex is what keeps these pages out of the index. Previews are public; if a
+branch ever needs to be truly private, turn on **Protect with Cloudflare Access** in the project
+settings.
 
 ---
 

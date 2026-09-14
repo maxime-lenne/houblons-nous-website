@@ -1,0 +1,8 @@
+# Cloudflare Pages response headers. Only shipped by preview builds — see the
+# `include:` list in _config_preview.yml.
+#
+# X-Robots-Tag is the strongest de-indexing signal there is: unlike a <meta>
+# tag it also covers non-HTML responses (feed.xml, assets) and it can't be
+# missed by a crawler that never parses the page.
+/*
+  X-Robots-Tag: noindex, nofollow

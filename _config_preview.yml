@@ -1,0 +1,30 @@
+# Preview configuration overrides — non-production branches deployed to
+# Cloudflare Pages (see docs/AGENTS.md#preview-deployments-cloudflare-pages).
+# Use with: bundle exec jekyll build --config _config.yml,_config_prod.yml,_config_preview.yml
+#
+# A preview site is a byte-for-byte copy of houblons-nous.org: left indexable
+# it would compete with the real site in search results. Everything here exists
+# to keep it out of the index.
+
+# Blanked on purpose. A preview has no stable host — Cloudflare mints a new
+# `<version>-houblons-nous-website.<subdomain>.workers.dev` per deployment — so
+# no literal value could be right. Empty makes jekyll-seo-tag emit a relative
+# canonical/og:url ("/"), which resolves against whatever host is serving the
+# page. Leaving production's url here instead would point every canonical tag
+# and the JSON-LD block back at houblons-nous.org.
+url: ""
+
+# Renders <meta name="robots" content="noindex, nofollow"> — see _includes/head.html.
+noindex: true
+
+# Ships Cloudflare's _headers file (X-Robots-Tag) with the build. Jekyll skips
+# files starting with "_" unless they are listed here, so production builds,
+# which don't load this config, never emit it.
+include:
+  - _headers
+
+# Note: there is deliberately no `plugins:` override here. Every plugin lives in
+# the Gemfile's :jekyll_plugins group, which Bundler loads whatever this list
+# says, so trimming it would change nothing. jekyll-sitemap is therefore still
+# active and the sitemap it writes — a ready-made list of preview URLs — is
+# deleted by the `preview` target in the Makefile instead.

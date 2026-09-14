@@ -1,4 +1,4 @@
-.PHONY: help install build serve clean watch production deploy test lint
+.PHONY: help install build serve clean watch production preview deploy test lint
 
 # Run Ruby commands through the asdf-managed Ruby (3.3.5, see .tool-versions)
 # instead of relying on shell shims, which may not be on PATH (e.g. non-login
@@ -48,6 +48,16 @@ watch: ## Build and watch for changes
 
 production: ## Build for production with optimizations
 	$(BUNDLE) exec jekyll build --config _config.yml,_config_prod.yml
+
+# Cloudflare Pages runs this for every non-production branch. The two files it
+# drops afterwards can't be suppressed from the config: jekyll-sitemap loads
+# from the Gemfile's :jekyll_plugins group regardless of the `plugins:` key, and
+# a sitemap is exactly the list of preview URLs we don't want crawlers handed;
+# CNAME is a GitHub Pages convention that means nothing to Cloudflare and would
+# only publish houblons-nous.org at /CNAME on the preview host.
+preview: ## Build a noindex preview of a branch (Cloudflare Pages build command)
+	$(BUNDLE) exec jekyll build --config _config.yml,_config_prod.yml,_config_preview.yml
+	@rm -f _site/sitemap.xml _site/CNAME
 
 test: ## Run the production build as a smoke test
 	$(BUNDLE) exec jekyll build --config _config.yml,_config_prod.yml
