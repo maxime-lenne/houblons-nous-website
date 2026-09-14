@@ -7,6 +7,14 @@
 # directly — see .github/workflows/jekyll.yml).
 HAS_ASDF := $(shell command -v asdf >/dev/null 2>&1 && echo 1)
 
+# Ruby derives its default external encoding from the locale, and the Cloudflare
+# build container has none set — so `File.read` hands back US-ASCII strings and
+# the first accented character in _people/ blows up jekyll-baserow-headless-cms
+# with Encoding::CompatibilityError. GitHub Actions runners happen to set a UTF-8
+# locale, which is why only the preview build hit this. Forcing the encoding via
+# RUBYOPT works regardless of which locales the host actually has generated.
+export RUBYOPT := -EUTF-8
+
 ifeq ($(HAS_ASDF),1)
 BUNDLE = asdf exec bundle
 else

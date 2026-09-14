@@ -65,8 +65,10 @@ an `X-Robots-Tag` header so they never compete with production in search results
 rationale and the Cloudflare project settings are in
 [AGENTS.md](AGENTS.md#preview-deployments-cloudflare-workers).
 
-Ruby is pinned by `.ruby-version` (3.3.5) because the Cloudflare build image reads that file, not
-the `.tool-versions` used by asdf locally. Keep the two in sync.
+The Cloudflare build image reads `.tool-versions`, so Ruby, Node and Bun versions come from the
+same file asdf uses locally. It sets no UTF-8 locale though, which is why the Makefile exports
+`RUBYOPT := -EUTF-8` — without it Ruby reads files as US-ASCII and the accented content under
+`_people/` crashes the Baserow plugin.
 
 ### Additional Workflows (Future)
 
