@@ -67,6 +67,16 @@
   }
 }
 
+.site-footer__credit a {
+  color: inherit;
+  text-decoration: underline;
+
+  &:hover,
+  &:focus-visible {
+    color: var(--color-brick);
+  }
+}
+
 .page__title,
 .post__title {
   margin-bottom: var(--space-sm);
