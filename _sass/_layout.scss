@@ -277,3 +277,25 @@
     color: var(--color-cream);
   }
 }
+
+.site-footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-xs) var(--space-md);
+  padding-block: var(--space-md);
+  font-size: var(--text-sm);
+
+  p {
+    margin: 0;
+  }
+
+  a {
+    color: var(--color-mist);
+
+    &:hover,
+    &:focus-visible {
+      color: var(--color-cream);
+    }
+  }
+}
