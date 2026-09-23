@@ -121,7 +121,9 @@ Hooks are automatically configured via Husky:
 | `Makefile` | Build/serve/deploy commands |
 | `env.sample` | Template for `.env` (Baserow CMS credentials) |
 | `.gitmoji.json` | Gitmoji-cli settings |
-| `.releaserc.json` | Semantic-release config |
+| `release.config.js` | Semantic-release config |
+| `.github/settings.yml` | GitHub settings as code (`bun run setup:github`) |
+| `renovate.json` | Renovate (extends `maxime-lenne/renovate-config`) |
 | `.markdownlint.json` | Markdown linting rules |
 | `.yamllint.yml` | YAML linting rules |
 | `.editorconfig` | Editor settings |

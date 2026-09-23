@@ -1,38 +1,11 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:recommended",
-    ":semanticCommits",
-    ":timezone(Europe/Paris)",
-    "group:allNonMajor"
-  ],
-  "labels": ["dependencies", "renovate"],
-  "schedule": ["before 10am on monday"],
-  "prHourlyLimit": 5,
-  "prConcurrentLimit": 10,
+  "extends": ["github>maxime-lenne/renovate-config"],
   "packageRules": [
     {
-      "description": "Group all dev dependencies",
-      "matchDepTypes": ["devDependencies"],
-      "groupName": "dev dependencies",
-      "groupSlug": "dev-deps"
-    },
-    {
-      "description": "Group GitHub Actions",
-      "matchManagers": ["github-actions"],
-      "groupName": "github-actions",
-      "labels": ["dependencies", "github-actions"]
-    },
-    {
-      "description": "Auto-merge patch updates for dev dependencies",
-      "matchDepTypes": ["devDependencies"],
-      "matchUpdateTypes": ["patch"],
-      "automerge": true,
-      "automergeType": "pr"
+      "description": "v10 requires conventional-changelog-writer@9, not yet used by @semantic-release/release-notes-generator@14",
+      "matchPackageNames": ["conventional-changelog-conventionalcommits"],
+      "allowedVersions": "<10"
     }
-  ],
-  "vulnerabilityAlerts": {
-    "enabled": true,
-    "labels": ["security"]
-  }
+  ]
 }

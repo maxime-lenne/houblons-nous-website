@@ -4,9 +4,7 @@ Project task tracking.
 
 ## Backlog
 
-- [ ] Renovate vs dependabot
 - [ ] merge auto renovate
-- [ ] Release auto
 - [ ]
 -
 
@@ -15,7 +13,9 @@ Project task tracking.
 - [x] workflow release doit déclencher la mise à jour du changelog et l'ajouter à la release github
 - [x] clean all docs
 - [x] get issue and pr template from frizbiz
-- [x] add dependabot
+- [x] Renovate replaces Dependabot
+- [x] Release auto (semantic-release on push to `main` + develop sync)
+- [x] Sync with WWT repository template (settings as code, branch cleanup)
 - [x] renovabot
 - [x] commitlint (gitmoji)
 - [x] changelog (gitmoji + conventional)

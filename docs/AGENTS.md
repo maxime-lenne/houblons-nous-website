@@ -28,12 +28,13 @@ Complete guide for AI assistants working on this repository.
 | Hosting | GitHub Pages, deployed via `.github/workflows/jekyll.yml` on push to `main` |
 | Branch Previews | Cloudflare Workers Builds (`wrangler.jsonc`), noindex — see below |
 | Package Manager | Bun |
-| Node Version | >= 22.11.0 |
+| Node Version | ^22.14.0 \|\| >= 24.10.0 |
 | Git Hooks | Husky + lint-staged |
 | Commit Convention | Gitmoji |
 | Commit Validation | commitlint |
 | Linting | markdownlint, yamllint |
-| Dependency Updates | Renovate, Dependabot |
+| Dependency Updates | Renovate (shared preset `maxime-lenne/renovate-config`) |
+| Releases | semantic-release (`release.config.js`) |
 | CI/CD | GitHub Actions, Cloudflare Workers Builds |
 
 ### Available Commands
@@ -53,6 +54,10 @@ bun run lint:md:fix   # Auto-fix markdown
 bun run lint:yaml     # Lint yaml files
 bun run lint:commit   # Validate last commit message
 bun run commit        # Interactive gitmoji commit
+bun run release:dry   # Preview the next release
+bun run clean:branches # Delete merged local branches (also run by post-checkout)
+bun run sync:develop  # Rebase develop onto main (automatic after a release)
+bun run setup:github  # Apply .github/settings.yml to GitHub (admin)
 ```
 
 ### Baserow CMS
@@ -233,9 +238,9 @@ Development conventions. Key points:
 
 Technical implementation guide. Key points:
 
-- **CI/CD**: GitHub Actions workflows (lint on push/PR)
+- **CI/CD**: GitHub Actions workflows (lint on push/PR, release on push to `main`, settings as code)
 - **Pre-commit**: Husky runs lint-staged automatically
-- **Dependency management**: Renovate (weekly) + Dependabot (security)
+- **Dependency management**: Renovate (weekly, automerge non-major, security fixes)
 
 ### DESIGN_SYSTEM.md
 
@@ -357,4 +362,4 @@ Full gitmoji list: [gitmoji.dev](https://gitmoji.dev)
 
 ---
 
-*Last updated: 2026-08-18*
+*Last updated: 2026-09-23*

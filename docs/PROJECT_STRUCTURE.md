@@ -62,13 +62,16 @@ github-repository-template/
 |------|---------|
 | `.github/workflows/lint.yml` | Lint on push/PR |
 | `renovate.json` | Automatic dependency updates |
-| `.github/dependabot.yml` | Security updates |
+| `.github/workflows/release.yml` | semantic-release on push to `main`, then develop sync |
+| `.github/workflows/setup.yml` | Apply `.github/settings.yml` (manual) |
+| `.github/workflows/jekyll.yml` | Build and deploy to GitHub Pages |
 
 ### Git Hooks
 
 | Directory | Purpose |
 |-----------|---------|
-| `.husky/` | Git hooks managed by Husky |
+| `.husky/` | Git hooks managed by Husky (pre-commit, commit-msg, post-checkout) |
+| `scripts/` | `setup-github.js`, `clean-branches.js`, `sync-develop.js` |
 
 ---
 
