@@ -1,5 +1,7 @@
-# Repository Settings - Managed by https://github.com/apps/settings
-# Install the app and changes to this file will be synced to GitHub
+# Repository Settings - single source of truth for the GitHub configuration
+# Applied by `bun run setup:github` (scripts/setup-github.js) with your gh
+# session, or by the "Repository Setup" workflow with an ADMIN_TOKEN secret.
+# The format is compatible with the Settings app (https://github.com/apps/settings).
 
 # =============================================================================
 # REPOSITORY SETTINGS
@@ -7,7 +9,7 @@
 repository:
 
   # Homepage URL
-  homepage: https://maxime-lenne.fr
+  homepage: https://houblons-nous.org
 
   # Visibility
   # private: true
@@ -16,7 +18,6 @@ repository:
   has_issues: true
   has_projects: true
   has_wiki: false
-  has_downloads: true
 
   # Default branch
   default_branch: develop
@@ -26,9 +27,13 @@ repository:
   allow_merge_commit: false
   allow_rebase_merge: true
   delete_branch_on_merge: true
+  # Required for Renovate to use GitHub native auto-merge
+  allow_auto_merge: true
 
   # Security
-  enable_automated_security_fixes: true
+  # Vulnerability alerts are read by Renovate, which opens the fix PRs:
+  # Dependabot security updates are disabled to avoid duplicate PRs
+  enable_automated_security_fixes: false
   enable_vulnerability_alerts: true
 
 # =============================================================================
@@ -113,7 +118,7 @@ labels:
     description: Good for newcomers
 
   - name: help wanted
-    color: 008672
+    color: '008672'
     description: Extra attention is needed
 
   - name: wontfix
@@ -157,20 +162,24 @@ branches:
       # Enforce rules for admins too
       enforce_admins: false
 
+      # Require all review conversations to be resolved before merging
+      required_conversation_resolution: true
+
       # Require linear history (rebase only, no merge commits)
       required_linear_history: true
 
-      # Prevent force pushes and branch deletion
-      allow_force_pushes: false
+      # Force pushes allowed: the release workflow rebases develop onto main
+      # after each release (scripts/sync-develop.js). No branch deletion.
+      allow_force_pushes: true
       allow_deletions: false
 
       # Restrict who can push (set to null to allow anyone with write access)
       restrictions: null
 
   # ---------------------------------------------------------------------------
-  # master - Production environment
+  # main - Production environment
   # ---------------------------------------------------------------------------
-  - name: master
+  - name: main
     protection:
       # Require pull request with mandatory approval before merging
       required_pull_request_reviews:
@@ -191,6 +200,9 @@ branches:
 
       # Enforce rules for admins too
       enforce_admins: false
+
+      # Require all review conversations to be resolved before merging
+      required_conversation_resolution: true
 
       # Require linear history (rebase only, no merge commits)
       required_linear_history: true

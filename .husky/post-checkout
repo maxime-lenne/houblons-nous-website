@@ -1,0 +1,2 @@
+# Branch switch only ($3 = 1): delete local branches whose PR was merged
+[ "$3" = "1" ] && bun scripts/clean-branches.js --auto || true

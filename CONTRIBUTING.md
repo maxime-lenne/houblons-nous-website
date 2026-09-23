@@ -22,7 +22,11 @@ Thank you for your interest in contributing to this project!
 
 ### Creating a Branch
 
+Always branch from `develop`:
+
 ```bash
+git checkout develop
+git pull origin develop
 git checkout -b feature/your-feature-name
 # or
 git checkout -b fix/issue-description
@@ -69,7 +73,8 @@ Conventional commits are also accepted: `<type>(scope): <description>`
    git push origin feature/your-feature-name
    ```
 
-2. Open a Pull Request against the `main` branch
+2. Open a Pull Request against the `develop` branch (`main` only receives
+   release PRs from `develop`)
 3. Fill out the PR template
 4. Wait for review
 
